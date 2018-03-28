@@ -1,0 +1,9 @@
+.gradle/
+.idea/
+out/
+gradlew
+gradlew.bat
+gradle/
+csv-tool.iml
+sellerbuyer.iml
+target/
