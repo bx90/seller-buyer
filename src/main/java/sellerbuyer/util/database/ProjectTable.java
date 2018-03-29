@@ -12,8 +12,6 @@ import java.util.Map;
 public class ProjectTable {
     private static Map<Long, Project> projectList = new HashMap<>();
 
-    private static long PROJECT_ID;
-
     public static Map<Long, Project> getProjectList() {
         return projectList;
     }

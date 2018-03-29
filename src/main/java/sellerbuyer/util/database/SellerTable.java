@@ -13,8 +13,6 @@ public class SellerTable {
 
     private static Map<Long, Seller> sellers = new HashMap<>();
 
-    private static long TABLE_ID;
-
     public static Map<Long, Seller> getSellers() {
         return sellers;
     }
