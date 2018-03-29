@@ -10,14 +10,12 @@ import java.util.List;
  * @date 3/27/18
  **/
 public class Seller implements Observer {
-    static int id = 0;
 
-    private Integer sellerId;
+    private Long sellerId;
     private List<Project> projectList;
     private List<Message> messageList;
 
     public Seller() {
-        sellerId = id++;
         projectList = new ArrayList<>();
         messageList = new ArrayList<>();
     }
@@ -27,11 +25,11 @@ public class Seller implements Observer {
 
     }
 
-    public int getSellerId() {
+    public Long getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(int sellerId) {
+    public void setSellerId(Long sellerId) {
         this.sellerId = sellerId;
     }
 

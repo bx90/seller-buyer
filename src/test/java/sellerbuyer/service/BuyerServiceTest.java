@@ -3,6 +3,7 @@ package sellerbuyer.service;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import sellerbuyer.bean.Bid;
 import sellerbuyer.bean.Project;
 
 import java.util.List;
@@ -22,27 +23,16 @@ public class BuyerServiceTest {
     @Test
     public void testGetProjects() throws Exception {
         BuyerService buyerService = new BuyerService();
-//        SellerService sellerService = new SellerService();
+        SellerService sellerService = new SellerService();
 
-
-//        sellerService.addProject(project1);
+        sellerService.addProject(project1, 1L);
         List<Project> projectList = buyerService.getProjects();
+
+        Bid bid = new Bid();
+        bid.setPrice(200.0);
+
+        buyerService.addBid(bid, 1L, 1L);
 
         System.out.println(projectList.get(0).toString());
     }
-//    @Test
-//    public void testGetProjects() throws Exception {
-//        BuyerService buyerService = new BuyerService();
-//        SellerService sellerService = new SellerService();
-//
-//        Project project1 = new Project();
-//        project1.setDescription("Test");
-//        project1.setBudge(100.0);
-//
-//        sellerService.addProject(project1);
-//        List<Project> projectList = buyerService.getProjects();
-//
-//        System.out.println(projectList.get(0).toString());
-//    }
-
 }

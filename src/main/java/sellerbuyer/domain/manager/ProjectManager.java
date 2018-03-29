@@ -1,7 +1,7 @@
 package sellerbuyer.domain.manager;
 
 import sellerbuyer.bean.Project;
-import sellerbuyer.util.database.Database;
+import sellerbuyer.util.database.ProjectTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 3/28/18
  **/
 public class ProjectManager {
-    private Map<Long, Project> projects = Database.getProjectList();
+    private Map<Long, Project> projects = ProjectTable.getProjectList();
 
     public Project addProject(Project project) {
         project.setProjectId((long) projects.size() + 1);

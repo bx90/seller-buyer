@@ -7,26 +7,26 @@ import java.util.Date;
  * @date 3/27/18
  **/
 public class Bid {
-    private String bidId;
-    private String buyerId;
+    private Long bidId;
+    private Long buyerId;
     private String projectId;
     private Double price;
     private Date bidData;
     private Buyer buyer;
 
-    public String getBidId() {
+    public Long getBidId() {
         return bidId;
     }
 
-    public void setBidId(String bidId) {
+    public void setBidId(Long bidId) {
         this.bidId = bidId;
     }
 
-    public String getBuyerId() {
+    public Long getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(String buyerId) {
+    public void setBuyerId(Long buyerId) {
         this.buyerId = buyerId;
     }
 

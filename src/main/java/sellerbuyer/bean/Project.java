@@ -4,6 +4,7 @@ import sellerbuyer.domain.BuyerObservable;
 import sellerbuyer.domain.Observer;
 import sellerbuyer.domain.SellerObservable;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +15,15 @@ import java.util.List;
 public class Project implements SellerObservable, BuyerObservable {
     private Long projectId;
     private String description;
-    private String sellerId;
+    private Long sellerId;
     private Double budge;
     private Date dueDate;
     private List<Bid> bids;
     private Seller seller;
 
+    public Project() {
+        bids = new ArrayList<>();
+    }
 
     // Use priority queue.
     // insert O(logN), get O(1)
@@ -64,11 +68,11 @@ public class Project implements SellerObservable, BuyerObservable {
         this.description = description;
     }
 
-    public String getSellerId() {
+    public Long getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(String sellerId) {
+    public void setSellerId(Long sellerId) {
         this.sellerId = sellerId;
     }
 
@@ -94,6 +98,14 @@ public class Project implements SellerObservable, BuyerObservable {
 
     public void setSeller(Seller seller) {
         this.seller = seller;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     // Testing only
