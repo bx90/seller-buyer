@@ -2,6 +2,7 @@ package sellerbuyer.bean;
 
 import sellerbuyer.domain.Observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,20 +10,25 @@ import java.util.List;
  * @date 3/27/18
  **/
 public class Buyer implements Observer {
-    private String buyerId;
+    private Long buyerId;
     private List<Bid> bids;
     private List<Message> messageList;
+
+    public Buyer() {
+        bids = new ArrayList<>();
+        messageList = new ArrayList<>();
+    }
 
     @Override
     public void update() {
 
     }
 
-    public String getBuyerId() {
+    public Long getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(String buyerId) {
+    public void setBuyerId(Long buyerId) {
         this.buyerId = buyerId;
     }
 
