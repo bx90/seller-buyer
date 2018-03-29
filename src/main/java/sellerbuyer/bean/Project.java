@@ -4,9 +4,7 @@ import sellerbuyer.domain.BuyerObservable;
 import sellerbuyer.domain.Observer;
 import sellerbuyer.domain.SellerObservable;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Boxiong
@@ -20,17 +18,24 @@ public class Project implements SellerObservable, BuyerObservable {
     private Date dueDate;
     private List<Bid> bids;
     private Seller seller;
+    private PriorityQueue<Bid> bidPriorityQueue;
 
     public Project() {
         bids = new ArrayList<>();
+        bidPriorityQueue = new PriorityQueue<>(Comparator.comparing(Bid::getPrice)
+                                                         .thenComparing(Comparator.comparing(Bid::getBidData)));
     }
 
     // Use priority queue.
     // insert O(logN), get O(1)
-    public String getFinalBid() {
-        return null;
+    public Bid getFinalBid() {
+        return bidPriorityQueue.peek();
     }
 
+    public void addBid(Bid bid) {
+        bids.add(bid);
+        bidPriorityQueue.offer(bid);
+    }
 
     @Override
     public void notifySeller() {

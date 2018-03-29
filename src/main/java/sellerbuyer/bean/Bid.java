@@ -1,6 +1,6 @@
 package sellerbuyer.bean;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Boxiong
@@ -11,7 +11,7 @@ public class Bid {
     private Long buyerId;
     private String projectId;
     private Double price;
-    private Date bidData;
+    private LocalDateTime bidData;
     private Buyer buyer;
 
     public Long getBidId() {
@@ -46,11 +46,11 @@ public class Bid {
         this.price = price;
     }
 
-    public Date getBidData() {
+    public LocalDateTime getBidData() {
         return bidData;
     }
 
-    public void setBidData(Date bidData) {
+    public void setBidData(LocalDateTime bidData) {
         this.bidData = bidData;
     }
 
@@ -60,5 +60,18 @@ public class Bid {
 
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Bid{");
+        sb.append("bidId=").append(bidId);
+        sb.append(", buyerId=").append(buyerId);
+        sb.append(", projectId='").append(projectId).append('\'');
+        sb.append(", price=").append(price);
+        sb.append(", bidData=").append(bidData);
+        sb.append(", buyer=").append(buyer);
+        sb.append('}');
+        return sb.toString();
     }
 }
