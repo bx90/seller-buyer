@@ -12,7 +12,7 @@ import java.util.List;
  * @date 3/27/18
  **/
 public class Project implements SellerObservable, BuyerObservable {
-    private String projectId;
+    private Long projectId;
     private String description;
     private String sellerId;
     private Double budge;
@@ -48,11 +48,11 @@ public class Project implements SellerObservable, BuyerObservable {
         bids.forEach(b -> b.getBuyer().update());
     }
 
-    public String getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
 
@@ -94,5 +94,21 @@ public class Project implements SellerObservable, BuyerObservable {
 
     public void setSeller(Seller seller) {
         this.seller = seller;
+    }
+
+    // Testing only
+    //TODO: remove this before release
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Project{");
+        sb.append("projectId=").append(projectId);
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", sellerId='").append(sellerId).append('\'');
+        sb.append(", budge=").append(budge);
+        sb.append(", dueDate=").append(dueDate);
+        sb.append(", bids=").append(bids);
+        sb.append(", seller=").append(seller);
+        sb.append('}');
+        return sb.toString();
     }
 }
