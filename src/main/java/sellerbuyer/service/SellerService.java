@@ -1,36 +1,36 @@
 package sellerbuyer.service;
 
 import sellerbuyer.bean.Project;
+import sellerbuyer.bean.Seller;
 import sellerbuyer.domain.manager.ProjectManager;
 import sellerbuyer.domain.manager.SellerManager;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * @author Boxiong
  * @date 3/28/18
  **/
+
+@Path("/sellers")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class SellerService {
     private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager = new SellerManager();
 
-    public Project addProject(Project project, Long sellerId) {
-        Project newProject = projectManager.addProject(project);
-        newProject.setSellerId(sellerId);
-        sellerManager.getSeller(sellerId)
-                     .getProjectList()
-                     .add(newProject);
+    @GET
+    @Path("/{sellerId}")
+    public Seller getSeller(@PathParam("sellerId") Long id, @Context UriInfo uriInfo) {
+        return sellerManager.getSeller(id);
 
-        return newProject;
     }
 
-    // Only checking own project.
-    // Since at the moment sellers have privilege to check project
-    // bid list.
-    public Project getProject(Long projectId, Long sellerId) {
-        Project project = projectManager.getProject(projectId);
-        return project.getSellerId().equals(sellerId) ? project : null;
+    @Path("/{sellerId}/projects")
+    public ProjectService getProjectResource() {
+        return new ProjectService(sellerManager);
     }
-
-//    public Project getOwnProject(Long sellerId) {
-//
-//    }
 }

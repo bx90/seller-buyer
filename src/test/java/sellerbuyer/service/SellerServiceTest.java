@@ -20,10 +20,11 @@ public class SellerServiceTest {
     private String description;
     private Long sellerId;
     SellerService sellerService;
-
+    ProjectService projectService;
     @BeforeTest
     public void setup() {
         sellerService = new SellerService();
+//        projectService = new ProjectService();
 
         sellerId = 1L;
         description = "Test";
@@ -33,27 +34,27 @@ public class SellerServiceTest {
         populateProject(project1);
     }
 
-    @Test
-    public void getProjectsTest() throws Exception {
-        sellerService.addProject(project1, sellerId);
-
-        System.out.println(sellerService.getProject(projectId, sellerId));
-        Assert.assertNotNull(sellerService.getProject(projectId, sellerId), "Cannot get project with given project id: " + projectId + ".");
-        Assert.assertTrue(sellerService.getProject(projectId, sellerId).getDescription().equals(description),
-                        "The project description is NOT correct. Expecting " + description + ". But get " + sellerService.getProject(projectId, sellerId).getDescription());
-    }
-
-    @Test (dependsOnMethods = { "getProjectsTest" })
-    public void getOwnProjectTest() {
-        Long anotherSellerId = 2L;
-        Long anotherProjectId = 2L;
-        Project project2 = new Project();
-        populateProject(project2);
-        project2.setSellerId(2L);
-
-        sellerService.addProject(project2, anotherSellerId);
-        Assert.assertNull(sellerService.getProject(anotherProjectId, sellerId), "Sellers can get other sellers' project info! " + projectId + ".");
-    }
+//    @Test
+//    public void getProjectsTest() throws Exception {
+//        sellerService.addProject(project1, sellerId);
+//
+//        System.out.println(sellerService.getProject(projectId, sellerId));
+//        Assert.assertNotNull(sellerService.getProject(projectId, sellerId), "Cannot get project with given project id: " + projectId + ".");
+//        Assert.assertTrue(sellerService.getProject(projectId, sellerId).getDescription().equals(description),
+//                        "The project description is NOT correct. Expecting " + description + ". But get " + sellerService.getProject(projectId, sellerId).getDescription());
+//    }
+//
+//    @Test (dependsOnMethods = { "getProjectsTest" })
+//    public void getOwnProjectTest() {
+//        Long anotherSellerId = 2L;
+//        Long anotherProjectId = 2L;
+//        Project project2 = new Project();
+//        populateProject(project2);
+//        project2.setSellerId(2L);
+//
+//        sellerService.addProject(project2, anotherSellerId);
+//        Assert.assertNull(sellerService.getProject(anotherProjectId, sellerId), "Sellers can get other sellers' project info! " + projectId + ".");
+//    }
 
     // Integration test
     @Test (dependsOnMethods = { "getProjectsTest" })

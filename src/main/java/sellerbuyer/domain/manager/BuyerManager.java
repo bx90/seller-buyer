@@ -13,8 +13,17 @@ public class BuyerManager {
     private Map<Long, Buyer> buyers = BuyerTable.getBuyers();
 
     public BuyerManager() {
-        buyers.put(buyers.size() + 1L, new Buyer());
-        buyers.put(buyers.size() + 1L, new Buyer());
+        Long buyerId1 = buyers.size() + 1L;
+        Long buyerId2 = buyers.size() + 1L;
+
+        Buyer buyer1 = new Buyer();
+        Buyer buyer2 = new Buyer();
+
+        buyer1.setBuyerId(buyerId1);
+        buyer2.setBuyerId(buyerId2);
+
+        buyers.put(buyer1.getBuyerId(), buyer1);
+        buyers.put(buyer2.getBuyerId(), buyer2);
     }
 
     public Buyer addBuyer(Buyer buyer) {
