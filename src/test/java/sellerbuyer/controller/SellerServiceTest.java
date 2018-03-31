@@ -1,13 +1,11 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import sellerbuyer.bean.Project;
 import sellerbuyer.bean.Seller;
 import sellerbuyer.util.database.SellerTable;
 
-import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -19,12 +17,12 @@ public class SellerServiceTest {
     private long projectId;
     private String description;
     private Long sellerId;
-    SellerService sellerService;
-    ProjectService projectService;
+    SellerController sellerService;
+    ProjectController projectService;
     @BeforeTest
     public void setup() {
-        sellerService = new SellerService();
-//        projectService = new ProjectService();
+        sellerService = new SellerController();
+//        projectService = new ProjectController();
 
         sellerId = 1L;
         description = "Test";

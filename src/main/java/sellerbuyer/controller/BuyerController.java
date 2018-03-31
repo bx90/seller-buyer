@@ -1,4 +1,4 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
 import sellerbuyer.bean.Buyer;
 import sellerbuyer.bean.Project;
@@ -19,7 +19,7 @@ import java.util.List;
 @Path("/buyers")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class BuyerService {
+public class BuyerController {
     private ProjectManager projectManager = new ProjectManager();
     private BuyerManager buyerManager = new BuyerManager();
     private BidManager bidManager = new BidManager();
@@ -31,8 +31,8 @@ public class BuyerService {
     }
 
     @Path("/{buyerId}/projects")
-    public ProjectService getProjectResource() {
-        return new ProjectService(buyerManager);
+    public ProjectController getProjectResource() {
+        return new ProjectController(buyerManager);
     }
 
 

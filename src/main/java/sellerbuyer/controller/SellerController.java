@@ -1,6 +1,5 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
-import sellerbuyer.bean.Project;
 import sellerbuyer.bean.Seller;
 import sellerbuyer.domain.manager.ProjectManager;
 import sellerbuyer.domain.manager.SellerManager;
@@ -18,7 +17,7 @@ import javax.ws.rs.core.UriInfo;
 @Path("/sellers")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class SellerService {
+public class SellerController {
     private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager = new SellerManager();
 
@@ -30,7 +29,7 @@ public class SellerService {
     }
 
     @Path("/{sellerId}/projects")
-    public ProjectService getProjectResource() {
-        return new ProjectService(sellerManager);
+    public ProjectController getProjectResource() {
+        return new ProjectController(sellerManager);
     }
 }

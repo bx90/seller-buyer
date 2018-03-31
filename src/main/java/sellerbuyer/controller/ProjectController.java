@@ -1,4 +1,4 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
 import sellerbuyer.bean.Project;
 import sellerbuyer.domain.manager.BuyerManager;
@@ -17,16 +17,16 @@ import javax.ws.rs.core.MediaType;
  **/
 
 @Path("/")
-public class ProjectService {
+public class ProjectController {
     private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager;
     private BuyerManager buyerManager;
 
-    public ProjectService(SellerManager sellerManager) {
+    public ProjectController(SellerManager sellerManager) {
         this.sellerManager = sellerManager;
     }
 
-    public ProjectService(BuyerManager buyerManager) {
+    public ProjectController(BuyerManager buyerManager) {
         this.buyerManager = buyerManager;
     }
 
@@ -43,8 +43,8 @@ public class ProjectService {
     }
 
     @Path("/{projectId}/bids")
-    public BidService getBidResource(@PathParam("buyerId") Long buyerId) {
-        return new BidService(projectManager, buyerManager);
+    public BidController getBidResource(@PathParam("buyerId") Long buyerId) {
+        return new BidController(projectManager, buyerManager);
     }
     // Only checking own project.
     // Since at the moment sellers have privilege to check project

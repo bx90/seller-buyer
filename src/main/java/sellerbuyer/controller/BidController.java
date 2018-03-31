@@ -1,4 +1,4 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
 import sellerbuyer.bean.Bid;
 import sellerbuyer.bean.Buyer;
@@ -16,12 +16,12 @@ import javax.ws.rs.PathParam;
  * @date 3/29/18
  **/
 @Path("/")
-public class BidService {
+public class BidController {
     private BidManager bidManager = new BidManager();
     private ProjectManager projectManager;
     private BuyerManager buyerManager;
 
-    public BidService(ProjectManager projectManager, BuyerManager buyerManager) {
+    public BidController(ProjectManager projectManager, BuyerManager buyerManager) {
         this.projectManager = projectManager;
         this.buyerManager = buyerManager;
     }
