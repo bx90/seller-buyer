@@ -30,6 +30,7 @@ public class ProjectController {
         this.buyerManager = buyerManager;
     }
 
+    // Seller:
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Project addProject(@PathParam("sellerId") Long sellerId, Project project) {

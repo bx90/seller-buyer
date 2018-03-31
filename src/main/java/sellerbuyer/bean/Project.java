@@ -16,6 +16,7 @@ public class Project implements SellerObservable, BuyerObservable {
     private Long projectId;
     private String description;
     private Long sellerId;
+    private Boolean isActive;
     private Double budge;
     private Date dueDate;
     private List<Bid> bids;
@@ -113,6 +114,14 @@ public class Project implements SellerObservable, BuyerObservable {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public Boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     // Testing only

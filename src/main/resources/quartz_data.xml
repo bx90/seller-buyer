@@ -11,6 +11,10 @@
             <name>TestJob</name>
             <job-class>sellerbuyer.util.quartz.TestJob</job-class>
         </job>
+        <job>
+            <name>TestJob</name>
+            <job-class>sellerbuyer.util.quartz.GetFinalBid</job-class>
+        </job>
         <trigger>
             <cron>
                 <name>TestJob</name>
