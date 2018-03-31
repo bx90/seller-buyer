@@ -1,4 +1,4 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
 import sellerbuyer.bean.Bid;
 import sellerbuyer.bean.Buyer;
@@ -7,24 +7,31 @@ import sellerbuyer.domain.manager.BidManager;
 import sellerbuyer.domain.manager.BuyerManager;
 import sellerbuyer.domain.manager.ProjectManager;
 
-import java.util.List;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  * @author Boxiong
- * @date 3/28/18
+ * @date 3/29/18
  **/
-public class BuyerService {
-    private ProjectManager projectManager = new ProjectManager();
-    private BuyerManager buyerManager = new BuyerManager();
+@Path("/")
+public class BidController {
     private BidManager bidManager = new BidManager();
+    private ProjectManager projectManager;
+    private BuyerManager buyerManager;
 
-    public List<Project> getProjects() {
-        return projectManager.getProject();
+    public BidController(ProjectManager projectManager, BuyerManager buyerManager) {
+        this.projectManager = projectManager;
+        this.buyerManager = buyerManager;
     }
 
     // add a bid in the project;
     // add a project in buyer.project.
-    public void addBid(Bid bid, Long buyerId, Long projectId) {
+    @POST
+    public void addBid(Bid bid,
+                       @PathParam("buyerId") Long buyerId,
+                       @PathParam("projectId") Long projectId) {
         Project project = projectManager.getProject(projectId);
         Buyer buyer = buyerManager.getBuyer(buyerId);
         bidManager.addBid(bid);

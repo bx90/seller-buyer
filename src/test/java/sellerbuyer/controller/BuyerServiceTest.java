@@ -1,4 +1,4 @@
-package sellerbuyer.service;
+package sellerbuyer.controller;
 
 
 import org.testng.annotations.BeforeTest;
@@ -22,16 +22,16 @@ public class BuyerServiceTest {
     }
     @Test
     public void testGetProjects() throws Exception {
-        BuyerService buyerService = new BuyerService();
-        SellerService sellerService = new SellerService();
+        BuyerController buyerService = new BuyerController();
+        SellerController sellerService = new SellerController();
 
-        sellerService.addProject(project1, 1L);
+//        sellerService.addProject(project1, 1L);
         List<Project> projectList = buyerService.getProjects();
 
         Bid bid = new Bid();
         bid.setPrice(200.0);
 
-        buyerService.addBid(bid, 1L, 1L);
+//        buyerService.addBid(bid, 1L, 1L);
 
         System.out.println(projectList.get(0).toString());
     }

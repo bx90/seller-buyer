@@ -4,12 +4,14 @@ import sellerbuyer.domain.BuyerObservable;
 import sellerbuyer.domain.Observer;
 import sellerbuyer.domain.SellerObservable;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 /**
  * @author Boxiong
  * @date 3/27/18
  **/
+@XmlRootElement
 public class Project implements SellerObservable, BuyerObservable {
     private Long projectId;
     private String description;

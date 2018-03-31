@@ -2,6 +2,7 @@ package sellerbuyer.bean;
 
 import sellerbuyer.domain.Observer;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @author Boxiong
  * @date 3/27/18
  **/
+@XmlRootElement
 public class Seller implements Observer {
 
     private Long sellerId;
