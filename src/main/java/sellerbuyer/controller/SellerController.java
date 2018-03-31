@@ -16,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 
 @Path("/sellers")
 @Consumes(MediaType.APPLICATION_JSON)
+//@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 @Produces(MediaType.APPLICATION_JSON)
 public class SellerController {
     private ProjectManager projectManager = new ProjectManager();

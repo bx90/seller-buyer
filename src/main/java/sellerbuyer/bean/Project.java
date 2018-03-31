@@ -5,6 +5,8 @@ import sellerbuyer.domain.Observer;
 import sellerbuyer.domain.SellerObservable;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -19,6 +21,7 @@ public class Project implements SellerObservable, BuyerObservable {
     private Boolean isActive;
     private Double budge;
     private Date dueDate;
+    private Date createDate;
     private List<Bid> bids;
     private Seller seller;
     private PriorityQueue<Bid> bidPriorityQueue;
@@ -122,6 +125,14 @@ public class Project implements SellerObservable, BuyerObservable {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     // Testing only
