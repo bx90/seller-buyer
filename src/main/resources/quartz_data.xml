@@ -7,18 +7,28 @@
         version="1.8">
 
     <schedule>
+        <!--test-->
         <job>
             <name>TestJob</name>
             <job-class>sellerbuyer.util.quartz.TestJob</job-class>
         </job>
+        <trigger>
+            <cron>
+                <name>TestJobCron</name>
+                <job-name>TestJob</job-name>
+                <cron-expression>0/5 * * * * ?</cron-expression>
+            </cron>
+        </trigger>
+
+        <!--Get final bid-->
         <job>
-            <name>TestJob</name>
+            <name>GetFinalBidTask</name>
             <job-class>sellerbuyer.util.quartz.GetFinalBid</job-class>
         </job>
         <trigger>
             <cron>
-                <name>TestJob</name>
-                <job-name>TestJob</job-name>
+                <name>GetFinalBidTaskCron</name>
+                <job-name>GetFinalBidTask</job-name>
                 <cron-expression>0/2 * * * * ?</cron-expression>
             </cron>
         </trigger>
