@@ -37,7 +37,7 @@ public class BidController {
         bidManager.addBid(bid);
 
         // TODO: notify seller.
-        project.getBids().add(bid);
+        project.addBid(bid);
         buyer.getBids().add(bid);
     }
 }

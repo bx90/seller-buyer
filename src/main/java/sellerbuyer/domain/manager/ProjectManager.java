@@ -16,6 +16,7 @@ public class ProjectManager {
 
     public Project addProject(Project project) {
         project.setProjectId((long) projects.size() + 1);
+        project.setActive(true);
         projects.put(project.getProjectId(), project);
         return project;
     }
