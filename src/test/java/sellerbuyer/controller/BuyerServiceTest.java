@@ -3,8 +3,8 @@ package sellerbuyer.controller;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import sellerbuyer.bean.Bid;
-import sellerbuyer.bean.Project;
+import sellerbuyer.model.bean.Bid;
+import sellerbuyer.model.bean.Project;
 
 import java.util.List;
 

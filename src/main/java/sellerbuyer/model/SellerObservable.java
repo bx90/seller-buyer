@@ -1,4 +1,4 @@
-package sellerbuyer.domain;
+package sellerbuyer.model;
 
 /**
  * @author Boxiong

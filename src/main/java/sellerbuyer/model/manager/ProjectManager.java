@@ -1,6 +1,6 @@
-package sellerbuyer.domain.manager;
+package sellerbuyer.model.manager;
 
-import sellerbuyer.bean.Project;
+import sellerbuyer.model.bean.Project;
 import sellerbuyer.util.database.ProjectTable;
 import sellerbuyer.util.exception.ValidationException;
 
@@ -42,9 +42,9 @@ public class ProjectManager {
         }
 
         // compare date.
-//        if (project.getDueDate().isBefore(project.getCreateDate())) {
-//            throw new ValidationException("Due date is not valid. It needs to be after project created time.");
-//        }
+        if (project.getDueDate().compareTo(project.getCreateDate()) < 0) {
+            throw new ValidationException("Due date is not valid. It needs to be after project created time.");
+        }
 
         if (project.getDescription() == null || project.getDescription().length() == 0 || project.getDescription().length() > 100) {
             throw new ValidationException("Description is a mandatory field. Please provide description within 100 character.");

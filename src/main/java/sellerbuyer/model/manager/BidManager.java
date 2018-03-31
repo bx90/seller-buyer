@@ -1,6 +1,6 @@
-package sellerbuyer.domain.manager;
+package sellerbuyer.model.manager;
 
-import sellerbuyer.bean.Bid;
+import sellerbuyer.model.bean.Bid;
 import sellerbuyer.util.database.BidTable;
 
 import java.util.Map;

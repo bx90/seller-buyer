@@ -1,9 +1,9 @@
 package sellerbuyer.controller;
 
-import sellerbuyer.bean.Project;
-import sellerbuyer.domain.manager.BuyerManager;
-import sellerbuyer.domain.manager.ProjectManager;
-import sellerbuyer.domain.manager.SellerManager;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.manager.BuyerManager;
+import sellerbuyer.model.manager.ProjectManager;
+import sellerbuyer.model.manager.SellerManager;
 import sellerbuyer.util.exception.ValidationException;
 
 import javax.ws.rs.POST;
@@ -33,8 +33,7 @@ public class ProjectController {
 
     // Seller:
     @POST
-//    @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public Project addProject(@PathParam("sellerId") Long sellerId, Project project) throws ValidationException {
         if (project.getDueDate() == null) {
            throw new ValidationException("Due Date is not set.");

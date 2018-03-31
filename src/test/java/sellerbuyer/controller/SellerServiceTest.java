@@ -2,8 +2,8 @@ package sellerbuyer.controller;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import sellerbuyer.bean.Project;
-import sellerbuyer.bean.Seller;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.bean.Seller;
 import sellerbuyer.util.database.SellerTable;
 
 import java.util.Map;

@@ -3,9 +3,9 @@ package sellerbuyer.util.quartz;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import sellerbuyer.bean.Bid;
-import sellerbuyer.bean.Project;
-import sellerbuyer.domain.manager.ProjectManager;
+import sellerbuyer.model.bean.Bid;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.manager.ProjectManager;
 
 import java.time.LocalDateTime;
 import java.util.List;

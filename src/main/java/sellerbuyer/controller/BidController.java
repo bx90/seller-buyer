@@ -1,11 +1,11 @@
 package sellerbuyer.controller;
 
-import sellerbuyer.bean.Bid;
-import sellerbuyer.bean.Buyer;
-import sellerbuyer.bean.Project;
-import sellerbuyer.domain.manager.BidManager;
-import sellerbuyer.domain.manager.BuyerManager;
-import sellerbuyer.domain.manager.ProjectManager;
+import sellerbuyer.model.bean.Bid;
+import sellerbuyer.model.bean.Buyer;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.manager.BidManager;
+import sellerbuyer.model.manager.BuyerManager;
+import sellerbuyer.model.manager.ProjectManager;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

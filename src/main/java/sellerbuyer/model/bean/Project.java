@@ -1,12 +1,10 @@
-package sellerbuyer.bean;
+package sellerbuyer.model.bean;
 
-import sellerbuyer.domain.BuyerObservable;
-import sellerbuyer.domain.Observer;
-import sellerbuyer.domain.SellerObservable;
+import sellerbuyer.model.BuyerObservable;
+import sellerbuyer.model.Observer;
+import sellerbuyer.model.SellerObservable;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.*;
 
 /**

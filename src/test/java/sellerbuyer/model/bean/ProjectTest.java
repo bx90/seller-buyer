@@ -1,4 +1,4 @@
-package sellerbuyer.bean;
+package sellerbuyer.model.bean;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;

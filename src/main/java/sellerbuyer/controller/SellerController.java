@@ -1,8 +1,8 @@
 package sellerbuyer.controller;
 
-import sellerbuyer.bean.Seller;
-import sellerbuyer.domain.manager.ProjectManager;
-import sellerbuyer.domain.manager.SellerManager;
+import sellerbuyer.model.bean.Seller;
+import sellerbuyer.model.manager.ProjectManager;
+import sellerbuyer.model.manager.SellerManager;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -16,8 +16,8 @@ import javax.ws.rs.core.UriInfo;
 
 @Path("/sellers")
 @Consumes(MediaType.APPLICATION_JSON)
-//@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+//@Produces(MediaType.APPLICATION_JSON)
 public class SellerController {
     private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager = new SellerManager();

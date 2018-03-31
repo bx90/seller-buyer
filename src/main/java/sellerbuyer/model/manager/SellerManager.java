@@ -1,9 +1,8 @@
-package sellerbuyer.domain.manager;
+package sellerbuyer.model.manager;
 
-import sellerbuyer.bean.Seller;
+import sellerbuyer.model.bean.Seller;
 import sellerbuyer.util.database.SellerTable;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
