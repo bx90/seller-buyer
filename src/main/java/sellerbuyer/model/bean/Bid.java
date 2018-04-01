@@ -1,6 +1,6 @@
 package sellerbuyer.model.bean;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * @author Boxiong
@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 public class Bid {
     private Long bidId;
     private Long buyerId;
-    private String projectId;
+    private Long projectId;
     private Double price;
-    private LocalDateTime bidData;
-    private Buyer buyer;
+    private ZonedDateTime bidDate;
+//    private Buyer buyer;
 
     public Long getBidId() {
         return bidId;
@@ -30,11 +30,11 @@ public class Bid {
         this.buyerId = buyerId;
     }
 
-    public String getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
 
@@ -46,21 +46,21 @@ public class Bid {
         this.price = price;
     }
 
-    public LocalDateTime getBidData() {
-        return bidData;
+    public ZonedDateTime getBidDate() {
+        return bidDate;
     }
 
-    public void setBidData(LocalDateTime bidData) {
-        this.bidData = bidData;
+    public void setBidDate(ZonedDateTime bidData) {
+        this.bidDate = bidData;
     }
 
-    public Buyer getBuyer() {
-        return buyer;
-    }
-
-    public void setBuyer(Buyer buyer) {
-        this.buyer = buyer;
-    }
+//    public Buyer getBuyer() {
+//        return buyer;
+//    }
+//
+//    public void setBuyer(Buyer buyer) {
+//        this.buyer = buyer;
+//    }
 
     @Override
     public String toString() {
@@ -69,8 +69,8 @@ public class Bid {
         sb.append(", buyerId=").append(buyerId);
         sb.append(", projectId='").append(projectId).append('\'');
         sb.append(", price=").append(price);
-        sb.append(", bidData=").append(bidData);
-        sb.append(", buyer=").append(buyer);
+        sb.append(", bidDate=").append(bidDate);
+//        sb.append(", buyer=").append(buyer);
         sb.append('}');
         return sb.toString();
     }

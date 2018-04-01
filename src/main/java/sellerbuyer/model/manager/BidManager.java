@@ -1,8 +1,11 @@
 package sellerbuyer.model.manager;
 
 import sellerbuyer.model.bean.Bid;
+import sellerbuyer.model.bean.Project;
 import sellerbuyer.util.database.BidTable;
+import sellerbuyer.util.exception.ValidationException;
 
+import java.time.ZonedDateTime;
 import java.util.Map;
 
 /**
@@ -14,6 +17,16 @@ public class BidManager {
 
     public void addBid(Bid bid) {
         bid.setBidId(bids.size() + 1L);
+        bid.setBidDate(ZonedDateTime.now());
         bids.put(bid.getBidId(), bid);
+    }
+
+    public void validate(Project project, Bid bid) throws ValidationException {
+        if (project != null && project.getBids().containsKey(bid.getBuyerId())) {
+            throw new ValidationException("You have bid the project for "
+                    + project.getBids().get(bid.getBuyerId()));
+        }
+
+
     }
 }

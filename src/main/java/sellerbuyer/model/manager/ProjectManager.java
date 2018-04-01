@@ -3,10 +3,10 @@ package sellerbuyer.model.manager;
 import sellerbuyer.model.bean.Project;
 import sellerbuyer.util.database.ProjectTable;
 import sellerbuyer.util.exception.ValidationException;
+import sellerbuyer.util.time.TimeTransformer;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +20,8 @@ public class ProjectManager {
     public Project addProject(Project project) throws ValidationException {
         project.setProjectId((long) projects.size() + 1);
         project.setActive(true);
-        project.setCreateDate(new Date());
+        project.setCreateDate(ZonedDateTime.now());
+        project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
         validation(project);
         projects.put(project.getProjectId(), project);
         return project;

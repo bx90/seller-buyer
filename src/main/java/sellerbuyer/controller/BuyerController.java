@@ -35,7 +35,6 @@ public class BuyerController {
         return new ProjectController(buyerManager);
     }
 
-
     public List<Project> getProjects() {
         return projectManager.getProject();
     }

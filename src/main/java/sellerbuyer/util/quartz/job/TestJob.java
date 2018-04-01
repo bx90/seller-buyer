@@ -1,4 +1,4 @@
-package sellerbuyer.util.quartz;
+package sellerbuyer.util.quartz.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

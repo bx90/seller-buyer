@@ -1,4 +1,4 @@
-package sellerbuyer.util.quartz;
+package sellerbuyer.util.quartz.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author Boxiong
  * @date 3/31/18
  **/
-public class GetFinalBid implements Job {
+public class GetFinalBidJob implements Job {
     private static ProjectManager projectManager = new ProjectManager();
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
