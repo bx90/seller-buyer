@@ -3,10 +3,6 @@ package sellerbuyer.model.datacollection.project;
 import sellerbuyer.model.bean.Project;
 import sellerbuyer.util.io.Util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * @author Boxiong
  * @date 3/31/18

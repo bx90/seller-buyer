@@ -32,6 +32,10 @@ public class SellerController {
 
     @Path("/{sellerId}/projects")
     public ProjectController getProjectResource() {
-        return new ProjectController(sellerManager, new ProjectCollector(), new SellerProjectCollection());
+        return new ProjectController.Builder()
+                                    .SellerManager(sellerManager)
+                                    .ProjectCollector(new ProjectCollector())
+                                    .ProjectCollectionStrategy(new SellerProjectCollection())
+                                    .build();
     }
 }

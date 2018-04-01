@@ -144,7 +144,8 @@ public class Project implements SellerObservable, BuyerObservable, Serializable 
     }
 
     public Double getFinalBidPrice() {
-        return finalBid == null ? null : finalBid.getPrice();
+        return finalBidPrice == null ?
+                (finalBid == null ? null : finalBid.getPrice()) : finalBidPrice;
     }
 
     public void setFinalBidPrice(Double finalBidPrice) {

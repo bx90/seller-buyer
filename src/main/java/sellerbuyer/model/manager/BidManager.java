@@ -26,7 +26,5 @@ public class BidManager {
             throw new ValidationException("You have bid the project for "
                     + project.getBids().get(bid.getBuyerId()));
         }
-
-
     }
 }

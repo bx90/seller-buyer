@@ -22,17 +22,44 @@ public class ProjectController {
     private SellerManager sellerManager;
     private BuyerManager buyerManager;
     private ProjectCollector projectCollector;
-// MUST HAVE: builder Pattern
-    protected ProjectController(SellerManager sellerManager, ProjectCollector projectCollector, ProjectCollectionStrategy strategy) {
-        this.sellerManager = sellerManager;
-        this.projectCollector = projectCollector;
-        projectCollector.setProjectCollectionStrategy(strategy);
+    private ProjectCollectionStrategy strategy;
+
+    private ProjectController(Builder builder) {
+        this.sellerManager = builder.sellerManager;
+        this.buyerManager = builder.buyerManager;
+        this.projectCollector = builder.projectCollector;
+        this.strategy = builder.strategy;
     }
 
-    protected ProjectController(BuyerManager buyerManager, ProjectCollector projectCollector, ProjectCollectionStrategy strategy) {
-        this.buyerManager = buyerManager;
-        this.projectCollector = projectCollector;
-        projectCollector.setProjectCollectionStrategy(strategy);
+    public static class Builder {
+        private SellerManager sellerManager;
+        private BuyerManager buyerManager;
+        private ProjectCollector projectCollector;
+        private ProjectCollectionStrategy strategy;
+
+        public Builder SellerManager(SellerManager sellerManager) {
+            this.sellerManager = sellerManager;
+            return this;
+        }
+
+        public Builder BuyerManager(BuyerManager buyerManager) {
+            this.buyerManager = buyerManager;
+            return this;
+        }
+
+        public Builder ProjectCollector(ProjectCollector projectCollector) {
+            this.projectCollector = projectCollector;
+            return this;
+        }
+
+        public Builder ProjectCollectionStrategy(ProjectCollectionStrategy strategy) {
+            this.strategy = strategy;
+            return this;
+        }
+
+        public ProjectController build() {
+            return new ProjectController(this);
+        }
     }
 
     // Seller:
@@ -48,8 +75,14 @@ public class ProjectController {
     }
     @GET
     @Path("/{projectId}")
-    public Project getProject(@PathParam("projectId") Long projectId) {
-        return projectCollector.collect(projectManager.getProject(projectId));
+    public Project getProject(@PathParam("projectId") Long projectId) throws ValidationException {
+        Project returnProject = projectManager.getProject(projectId);
+        if (returnProject == null) {
+            throw new ValidationException("Cannot find project with id " + projectId);
+        }
+        projectCollector.setProjectCollectionStrategy(strategy);
+        return projectCollector.collect(returnProject);
+
     }
 
     // Buyer:
@@ -57,17 +90,4 @@ public class ProjectController {
     public BidController getBidResource(@PathParam("buyerId") Long buyerId) {
         return new BidController(projectManager, buyerManager);
     }
-
-
-    // Only checking own project.
-    // Since at the moment sellers have privilege to check project
-    // bid list.
-    public Project getProject(Long projectId, Long sellerId) {
-        Project project = projectManager.getProject(projectId);
-        return project.getSellerId().equals(sellerId) ? project : null;
-    }
-
-//    public Project getOwnProject(Long sellerId) {
-//
-//    }
 }

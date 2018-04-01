@@ -4,6 +4,7 @@ import sellerbuyer.model.bean.Buyer;
 import sellerbuyer.model.bean.Project;
 import sellerbuyer.model.datacollection.project.BuyerProjectCollection;
 import sellerbuyer.model.datacollection.project.ProjectCollector;
+import sellerbuyer.model.datacollection.project.SellerProjectCollection;
 import sellerbuyer.model.manager.BidManager;
 import sellerbuyer.model.manager.BuyerManager;
 import sellerbuyer.model.manager.ProjectManager;
@@ -34,11 +35,11 @@ public class BuyerController {
 
     @Path("/{buyerId}/projects")
     public ProjectController getProjectResource() {
-        return new ProjectController(buyerManager, new ProjectCollector(), new BuyerProjectCollection());
-    }
-
-    public List<Project> getProjects() {
-        return projectManager.getProject();
+        return new ProjectController.Builder()
+                .BuyerManager(buyerManager)
+                .ProjectCollector(new ProjectCollector())
+                .ProjectCollectionStrategy(new BuyerProjectCollection())
+                .build();
     }
 
 
