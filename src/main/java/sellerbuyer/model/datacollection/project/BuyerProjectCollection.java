@@ -1,0 +1,27 @@
+package sellerbuyer.model.datacollection.project;
+
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.util.io.Util;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * @author Boxiong
+ * @date 3/31/18
+ **/
+public class BuyerProjectCollection implements ProjectCollectionStrategy {
+
+    @Override
+    public Project collect(Project inputProject) {
+        Project clone = Util.cloneProject(inputProject);
+        applyRule(clone);
+        return clone;
+    }
+
+    private void applyRule(Project project) {
+        project.setBids(null);
+        project.setFinalBid(null);
+    }
+}

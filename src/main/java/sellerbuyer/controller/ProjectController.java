@@ -1,6 +1,8 @@
 package sellerbuyer.controller;
 
 import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.datacollection.project.ProjectCollectionStrategy;
+import sellerbuyer.model.datacollection.project.ProjectCollector;
 import sellerbuyer.model.manager.BuyerManager;
 import sellerbuyer.model.manager.ProjectManager;
 import sellerbuyer.model.manager.SellerManager;
@@ -19,13 +21,18 @@ public class ProjectController {
     private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager;
     private BuyerManager buyerManager;
-
-    public ProjectController(SellerManager sellerManager) {
+    private ProjectCollector projectCollector;
+// MUST HAVE: builder Pattern
+    protected ProjectController(SellerManager sellerManager, ProjectCollector projectCollector, ProjectCollectionStrategy strategy) {
         this.sellerManager = sellerManager;
+        this.projectCollector = projectCollector;
+        projectCollector.setProjectCollectionStrategy(strategy);
     }
 
-    public ProjectController(BuyerManager buyerManager) {
+    protected ProjectController(BuyerManager buyerManager, ProjectCollector projectCollector, ProjectCollectionStrategy strategy) {
         this.buyerManager = buyerManager;
+        this.projectCollector = projectCollector;
+        projectCollector.setProjectCollectionStrategy(strategy);
     }
 
     // Seller:
@@ -42,7 +49,7 @@ public class ProjectController {
     @GET
     @Path("/{projectId}")
     public Project getProject(@PathParam("projectId") Long projectId) {
-        return projectManager.getProject(projectId);
+        return projectCollector.collect(projectManager.getProject(projectId));
     }
 
     // Buyer:

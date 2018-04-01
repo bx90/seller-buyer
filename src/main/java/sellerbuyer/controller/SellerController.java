@@ -1,6 +1,8 @@
 package sellerbuyer.controller;
 
 import sellerbuyer.model.bean.Seller;
+import sellerbuyer.model.datacollection.project.ProjectCollector;
+import sellerbuyer.model.datacollection.project.SellerProjectCollection;
 import sellerbuyer.model.manager.ProjectManager;
 import sellerbuyer.model.manager.SellerManager;
 
@@ -17,7 +19,6 @@ import javax.ws.rs.core.UriInfo;
 @Path("/sellers")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-//@Produces(MediaType.APPLICATION_JSON)
 public class SellerController {
     private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager = new SellerManager();
@@ -31,6 +32,6 @@ public class SellerController {
 
     @Path("/{sellerId}/projects")
     public ProjectController getProjectResource() {
-        return new ProjectController(sellerManager);
+        return new ProjectController(sellerManager, new ProjectCollector(), new SellerProjectCollection());
     }
 }
