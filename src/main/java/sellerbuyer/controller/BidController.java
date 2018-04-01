@@ -35,12 +35,15 @@ public class BidController {
     public Bid addBid(Bid bid,
                        @PathParam("buyerId") Long buyerId,
                        @PathParam("projectId") Long projectId) throws ValidationException {
+        Project project = projectManager.getProject(projectId);
+        if (!project.isActive()) {
+            throw new ValidationException("The project with id: " + projectId + " expired. ");
+        }
 
         bid.setProjectId(projectId);
         bid.setBuyerId(buyerId);
         bid.setBidDate(ZonedDateTime.now());
 
-        Project project = projectManager.getProject(projectId);
         Buyer buyer = buyerManager.getBuyer(buyerId);
         bidManager.addBid(bid);
         bidManager.validate(project, bid);
@@ -51,4 +54,5 @@ public class BidController {
 
         return bid;
     }
+
 }

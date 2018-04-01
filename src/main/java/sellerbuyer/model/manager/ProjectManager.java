@@ -26,8 +26,6 @@ public class ProjectManager {
         projects.put(project.getProjectId(), project);
         return project;
     }
-    // This dangerous !!!!!
-    // TODO change exposure base on visitor.
     public List<Project> getProject() {
         return new ArrayList<>(projects.values());
     }

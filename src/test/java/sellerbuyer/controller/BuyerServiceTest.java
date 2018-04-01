@@ -26,13 +26,13 @@ public class BuyerServiceTest {
         SellerController sellerService = new SellerController();
 
 //        sellerService.addProject(project1, 1L);
-        List<Project> projectList = buyerService.getProjects();
+//        List<Project> projectList = buyerService.getProjects();
 
         Bid bid = new Bid();
         bid.setPrice(200.0);
 
 //        buyerService.addBid(bid, 1L, 1L);
 
-        System.out.println(projectList.get(0).toString());
+//        System.out.println(projectList.get(0).toString());
     }
 }
