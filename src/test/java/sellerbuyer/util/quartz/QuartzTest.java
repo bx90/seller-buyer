@@ -24,5 +24,6 @@ public class QuartzTest {
         Scheduler scheduler = new StdSchedulerFactory().getScheduler();
         scheduler.start();
         scheduler.scheduleJob(job, trigger);
+        scheduler.shutdown();
     }
 }

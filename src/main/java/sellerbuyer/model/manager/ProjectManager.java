@@ -18,14 +18,9 @@ public class ProjectManager {
     private Map<Long, Project> projects = ProjectTable.getProjectList();
 
     public Project addProject(Project project, Long sellerId) throws ValidationException {
-//        project.setProjectId((long) projects.size() + 1);
-//        project.setActive(true);
-//        project.setCreateDate(ZonedDateTime.now());
-//        project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
         validation(project);
         initializeProject(project, sellerId);
         storeProject(project);
-//        projects.put(project.getProjectId(), project);
         return project;
     }
     public List<Project> getProject() {
@@ -37,9 +32,8 @@ public class ProjectManager {
     }
 
     private void validation(Project project) throws ValidationException {
-        System.out.println(ZonedDateTime.now());
         if (project.getDueDate() == null) {
-            throw new ValidationException("Due date is not set.");
+            throw new ValidationException("Due date is a mandatory field. Please enter a valid due date. E.g.: 2020-07-05T22:00");
         }
 
         // compare date.
@@ -50,7 +44,7 @@ public class ProjectManager {
         if (project.getDescription() == null || project.getDescription().length() == 0 || project.getDescription().length() > 100) {
             throw new ValidationException("Description is a mandatory field. Please provide description within 100 character.");
         }
-
+        // add date format checking, or limit the format in the UI.
     }
 
     private void initializeProject(Project project, Long sellerId) throws ValidationException {
