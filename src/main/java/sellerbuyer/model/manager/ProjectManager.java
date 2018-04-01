@@ -17,13 +17,15 @@ import java.util.Map;
 public class ProjectManager {
     private Map<Long, Project> projects = ProjectTable.getProjectList();
 
-    public Project addProject(Project project) throws ValidationException {
-        project.setProjectId((long) projects.size() + 1);
-        project.setActive(true);
-        project.setCreateDate(ZonedDateTime.now());
-        project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
+    public Project addProject(Project project, Long sellerId) throws ValidationException {
+//        project.setProjectId((long) projects.size() + 1);
+//        project.setActive(true);
+//        project.setCreateDate(ZonedDateTime.now());
+//        project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
         validation(project);
-        projects.put(project.getProjectId(), project);
+        initializeProject(project, sellerId);
+        storeProject(project);
+//        projects.put(project.getProjectId(), project);
         return project;
     }
     public List<Project> getProject() {
@@ -41,13 +43,26 @@ public class ProjectManager {
         }
 
         // compare date.
-        if (project.getDueDate().compareTo(project.getCreateDate()) < 0) {
-            throw new ValidationException("Due date is not valid. It needs to be after project created time.");
+        if (project.getDueDate().isBefore(project.getCreateDate())) {
+            throw new ValidationException("Due date is not valid. It needs to be after the project created time.");
         }
 
         if (project.getDescription() == null || project.getDescription().length() == 0 || project.getDescription().length() > 100) {
             throw new ValidationException("Description is a mandatory field. Please provide description within 100 character.");
         }
 
+    }
+
+    private void initializeProject(Project project, Long sellerId) throws ValidationException {
+        project.setSellerId(sellerId);
+        project.setProjectId((long) projects.size() + 1);
+        project.setActive(true);
+        project.setCreateDate(ZonedDateTime.now());
+        project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
+    }
+
+
+    private void storeProject(Project project) {
+        projects.put(project.getProjectId(), project);
     }
 }

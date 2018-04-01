@@ -23,9 +23,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class BuyerController {
-    private ProjectManager projectManager = new ProjectManager();
     private BuyerManager buyerManager = new BuyerManager();
-    private BidManager bidManager = new BidManager();
 
     @GET
     @Path("/{buyerId}")
@@ -36,10 +34,10 @@ public class BuyerController {
     @Path("/{buyerId}/projects")
     public ProjectController getProjectResource() {
         return new ProjectController.Builder()
-                .BuyerManager(buyerManager)
-                .ProjectCollector(new ProjectCollector())
-                .ProjectCollectionStrategy(new BuyerProjectCollection())
-                .build();
+                                    .BuyerManager(buyerManager)
+                                    .ProjectCollector(new ProjectCollector())
+                                    .ProjectCollectionStrategy(new BuyerProjectCollection())
+                                    .build();
     }
 
 

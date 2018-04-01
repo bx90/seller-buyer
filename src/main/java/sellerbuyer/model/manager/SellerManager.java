@@ -1,5 +1,6 @@
 package sellerbuyer.model.manager;
 
+import sellerbuyer.model.bean.Project;
 import sellerbuyer.model.bean.Seller;
 import sellerbuyer.util.database.SellerTable;
 
@@ -33,6 +34,10 @@ public class SellerManager {
 
     public Seller getSeller(Long id) {
         return sellers.get(id);
+    }
+
+    public void linkProjectWithSeller(Long sellerId, Project project) {
+        sellers.get(sellerId).getProjectList().add(project);
     }
 
 }

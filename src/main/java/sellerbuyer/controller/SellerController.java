@@ -20,7 +20,6 @@ import javax.ws.rs.core.UriInfo;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 public class SellerController {
-    private ProjectManager projectManager = new ProjectManager();
     private SellerManager sellerManager = new SellerManager();
 
     @GET

@@ -9,7 +9,6 @@ import sellerbuyer.model.manager.SellerManager;
 import sellerbuyer.util.exception.ValidationException;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
 /**
  * @author Boxiong
@@ -19,6 +18,8 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class ProjectController {
     private ProjectManager projectManager = new ProjectManager();
+
+
     private SellerManager sellerManager;
     private BuyerManager buyerManager;
     private ProjectCollector projectCollector;
@@ -65,11 +66,12 @@ public class ProjectController {
     // Seller:
     @POST
     public Project addProject(@PathParam("sellerId") Long sellerId, Project project) throws ValidationException {
-        Project newProject = projectManager.addProject(project);
-        newProject.setSellerId(sellerId);
-        sellerManager.getSeller(sellerId)
-                .getProjectList()
-                .add(newProject);
+        Project newProject = projectManager.addProject(project, sellerId);
+//        newProject.setSellerId(sellerId);
+        sellerManager.linkProjectWithSeller(sellerId, newProject);
+//        sellerManager.getSeller(sellerId)
+//                     .getProjectList()
+//                     .add(newProject);
 
         return newProject;
     }
