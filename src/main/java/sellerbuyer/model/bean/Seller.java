@@ -11,13 +11,15 @@ import java.util.List;
  * @date 3/27/18
  **/
 @XmlRootElement
-public class Seller implements Observer {
+public class Seller extends Role implements Observer {
 
     private Long sellerId;
     private List<Project> projectList;
     private List<Message> messageList;
+    private List<Link> links;
 
     public Seller() {
+        links = new ArrayList<>();
         projectList = new ArrayList<>();
         messageList = new ArrayList<>();
     }
@@ -49,5 +51,20 @@ public class Seller implements Observer {
 
     public void setMessageList(List<Message> messageList) {
         this.messageList = messageList;
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
+    }
+
+    public void addLink(String url, String rel) {
+        Link link = new Link();
+        link.setLink(url);
+        link.setRel(rel);
+        links.add(link);
     }
 }

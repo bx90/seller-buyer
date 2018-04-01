@@ -1,11 +1,13 @@
 package sellerbuyer.model.bean;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.ZonedDateTime;
 
 /**
  * @author Boxiong
  * @date 3/27/18
  **/
+@XmlRootElement
 public class Bid {
     private Long bidId;
     private Long buyerId;

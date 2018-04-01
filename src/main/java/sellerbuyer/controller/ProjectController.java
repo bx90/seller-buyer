@@ -9,6 +9,10 @@ import sellerbuyer.model.manager.SellerManager;
 import sellerbuyer.util.exception.ValidationException;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 
 /**
  * @author Boxiong
@@ -17,8 +21,7 @@ import javax.ws.rs.*;
 
 @Path("/")
 public class ProjectController {
-    private ProjectManager projectManager = new ProjectManager();
-
+    private static ProjectManager projectManager = new ProjectManager();
 
     private SellerManager sellerManager;
     private BuyerManager buyerManager;
@@ -65,15 +68,17 @@ public class ProjectController {
 
     // Seller:
     @POST
-    public Project addProject(@PathParam("sellerId") Long sellerId, Project project) throws ValidationException {
+    public Response addProject(@PathParam("sellerId") Long sellerId, Project project,  @Context UriInfo uriInfo) throws ValidationException {
+        sellerManager.validate(sellerId);
         Project newProject = projectManager.addProject(project, sellerId);
-//        newProject.setSellerId(sellerId);
         sellerManager.linkProjectWithSeller(sellerId, newProject);
-//        sellerManager.getSeller(sellerId)
-//                     .getProjectList()
-//                     .add(newProject);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                         .path(newProject.getProjectId().toString())
+                         .build();
 
-        return newProject;
+        return Response.created(uri)
+                       .entity(newProject)
+                       .build();
     }
     @GET
     @Path("/{projectId}")

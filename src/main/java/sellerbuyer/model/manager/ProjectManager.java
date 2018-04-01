@@ -18,8 +18,8 @@ public class ProjectManager {
     private Map<Long, Project> projects = ProjectTable.getProjectList();
 
     public Project addProject(Project project, Long sellerId) throws ValidationException {
-        validation(project);
         initializeProject(project, sellerId);
+        validation(project);
         storeProject(project);
         return project;
     }

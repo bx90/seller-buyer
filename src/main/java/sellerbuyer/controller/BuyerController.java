@@ -8,6 +8,7 @@ import sellerbuyer.model.datacollection.project.SellerProjectCollection;
 import sellerbuyer.model.manager.BidManager;
 import sellerbuyer.model.manager.BuyerManager;
 import sellerbuyer.model.manager.ProjectManager;
+import sellerbuyer.util.exception.ValidationException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -23,16 +24,18 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class BuyerController {
-    private BuyerManager buyerManager = new BuyerManager();
+    private static BuyerManager buyerManager = new BuyerManager();
 
     @GET
     @Path("/{buyerId}")
-    public Buyer getSeller(@PathParam("buyerId") Long id, @Context UriInfo uriInfo) {
+    public Buyer getSeller(@PathParam("buyerId") Long id, @Context UriInfo uriInfo) throws ValidationException {
+        buyerManager.validate(id);
         return buyerManager.getBuyer(id);
     }
 
     @Path("/{buyerId}/projects")
-    public ProjectController getProjectResource() {
+    public ProjectController getProjectResource(@PathParam("buyerId") Long id) throws ValidationException {
+        buyerManager.validate(id);
         return new ProjectController.Builder()
                                     .BuyerManager(buyerManager)
                                     .ProjectCollector(new ProjectCollector())

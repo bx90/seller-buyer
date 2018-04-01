@@ -16,6 +16,7 @@ public class Buyer implements Observer {
     private List<Bid> bids;
     private List<Message> messageList;
 
+
     public Buyer() {
         bids = new ArrayList<>();
         messageList = new ArrayList<>();
