@@ -3,6 +3,7 @@ package sellerbuyer.util.quartz;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.testng.annotations.Test;
+import sellerbuyer.util.quartz.job.TestJob;
 
 /**
  * @author Boxiong

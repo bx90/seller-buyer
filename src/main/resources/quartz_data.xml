@@ -8,30 +8,30 @@
 
     <schedule>
         <!--test-->
-        <job>
-            <name>TestJob</name>
-            <job-class>sellerbuyer.util.quartz.TestJob</job-class>
-        </job>
-        <trigger>
-            <cron>
-                <name>TestJobCron</name>
-                <job-name>TestJob</job-name>
-                <cron-expression>0/5 * * * * ?</cron-expression>
-            </cron>
-        </trigger>
+        <!--<job>-->
+            <!--<name>TestJob</name>-->
+            <!--<job-class>sellerbuyer.util.quartz.job.TestJob</job-class>-->
+        <!--</job>-->
+        <!--<trigger>-->
+            <!--<cron>-->
+                <!--<name>TestJobCron</name>-->
+                <!--<job-name>TestJob</job-name>-->
+                <!--<cron-expression>0/5 * * * * ?</cron-expression>-->
+            <!--</cron>-->
+        <!--</trigger>-->
 
         <!--Get final bid-->
-        <job>
-            <name>GetFinalBidTask</name>
-            <job-class>sellerbuyer.util.quartz.GetFinalBid</job-class>
-        </job>
-        <trigger>
-            <cron>
-                <name>GetFinalBidTaskCron</name>
-                <job-name>GetFinalBidTask</job-name>
-                <cron-expression>0/2 * * * * ?</cron-expression>
-            </cron>
-        </trigger>
+        <!--<job>-->
+            <!--<name>GetFinalBidTask</name>-->
+            <!--<job-class>sellerbuyer.util.quartz.job.GetFinalBidJobJob</job-class>-->
+        <!--</job>-->
+        <!--<trigger>-->
+            <!--<cron>-->
+                <!--<name>GetFinalBidTaskCron</name>-->
+                <!--<job-name>GetFinalBidTask</job-name>-->
+                <!--<cron-expression>0/2 * * * * ?</cron-expression>-->
+            <!--</cron>-->
+        <!--</trigger>-->
     </schedule>
 
 </job-scheduling-data>

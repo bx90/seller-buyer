@@ -1,4 +1,4 @@
-package sellerbuyer.bean;
+package sellerbuyer.model.bean;
 
 import java.util.Date;
 

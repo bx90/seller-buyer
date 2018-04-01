@@ -1,10 +1,11 @@
-package sellerbuyer.bean;
+package sellerbuyer.model.bean;
 
-import sellerbuyer.domain.BuyerObservable;
-import sellerbuyer.domain.Observer;
-import sellerbuyer.domain.SellerObservable;
+import sellerbuyer.model.BuyerObservable;
+import sellerbuyer.model.Observer;
+import sellerbuyer.model.SellerObservable;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -15,28 +16,35 @@ import java.util.*;
 public class Project implements SellerObservable, BuyerObservable {
     private Long projectId;
     private String description;
+    private String userInputDueDate;
     private Long sellerId;
     private Boolean isActive;
     private Double budge;
-    private Date dueDate;
-    private List<Bid> bids;
+    private ZonedDateTime dueDate;
+    private ZonedDateTime createDate;
+//    private List<Bid> bids;
+    private Map<Long, Bid> bids;
     private Seller seller;
     private PriorityQueue<Bid> bidPriorityQueue;
+    private Bid finalBid;
 
     public Project() {
-        bids = new ArrayList<>();
+//        bids = new ArrayList<>();
+        bids = new HashMap<>();
         bidPriorityQueue = new PriorityQueue<>(Comparator.comparing(Bid::getPrice)
-                                                         .thenComparing(Comparator.comparing(Bid::getBidData)));
+                                                         .thenComparing(Comparator.comparing(Bid::getBidDate)));
     }
 
     // Use priority queue.
     // insert O(logN), get O(1)
     public Bid getFinalBid() {
-        return bidPriorityQueue.peek();
+        finalBid = bidPriorityQueue.peek();
+        return finalBid;
     }
 
     public void addBid(Bid bid) {
-        bids.add(bid);
+//        bids.add(bid);
+        bids.put(bid.getBuyerId(), bid);
         bidPriorityQueue.offer(bid);
     }
 
@@ -57,7 +65,7 @@ public class Project implements SellerObservable, BuyerObservable {
 
     @Override
     public void notifyBuyer() {
-        bids.forEach(b -> b.getBuyer().update());
+//        bids.forEach(b -> b.getBuyer().update());
     }
 
     public Long getProjectId() {
@@ -91,12 +99,20 @@ public class Project implements SellerObservable, BuyerObservable {
     public void setBudge(Double budge) {
         this.budge = budge;
     }
+//
+//    public List<Bid> getBids() {
+//        return bids;
+//    }
+//
+//    public void setBids(List<Bid> bids) {
+//        this.bids = bids;
+//    }
 
-    public List<Bid> getBids() {
+    public Map<Long, Bid> getBids() {
         return bids;
     }
 
-    public void setBids(List<Bid> bids) {
+    public void setBids(Map<Long, Bid> bids) {
         this.bids = bids;
     }
 
@@ -108,11 +124,11 @@ public class Project implements SellerObservable, BuyerObservable {
         this.seller = seller;
     }
 
-    public Date getDueDate() {
+    public ZonedDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(ZonedDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -124,18 +140,43 @@ public class Project implements SellerObservable, BuyerObservable {
         isActive = active;
     }
 
+    public ZonedDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(ZonedDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUserInputDueDate() {
+        return userInputDueDate;
+    }
+
+    public void setUserInputDueDate(String userInputDueDate) {
+        this.userInputDueDate = userInputDueDate;
+    }
+
+    public void setFinalBid(Bid finalBid) {
+        this.finalBid = finalBid;
+    }
+
     // Testing only
     //TODO: remove this before release
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Project{");
         sb.append("projectId=").append(projectId);
         sb.append(", description='").append(description).append('\'');
-        sb.append(", sellerId='").append(sellerId).append('\'');
+        sb.append(", userInputDueDate='").append(userInputDueDate).append('\'');
+        sb.append(", sellerId=").append(sellerId);
+        sb.append(", isActive=").append(isActive);
         sb.append(", budge=").append(budge);
         sb.append(", dueDate=").append(dueDate);
+        sb.append(", createDate=").append(createDate);
         sb.append(", bids=").append(bids);
         sb.append(", seller=").append(seller);
+        sb.append(", bidPriorityQueue=").append(bidPriorityQueue);
         sb.append('}');
         return sb.toString();
     }

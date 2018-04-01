@@ -1,14 +1,12 @@
 package sellerbuyer.controller;
 
-import sellerbuyer.bean.Project;
-import sellerbuyer.domain.manager.BuyerManager;
-import sellerbuyer.domain.manager.ProjectManager;
-import sellerbuyer.domain.manager.SellerManager;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.manager.BuyerManager;
+import sellerbuyer.model.manager.ProjectManager;
+import sellerbuyer.model.manager.SellerManager;
+import sellerbuyer.util.exception.ValidationException;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -32,8 +30,7 @@ public class ProjectController {
 
     // Seller:
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public Project addProject(@PathParam("sellerId") Long sellerId, Project project) {
+    public Project addProject(@PathParam("sellerId") Long sellerId, Project project) throws ValidationException {
         Project newProject = projectManager.addProject(project);
         newProject.setSellerId(sellerId);
         sellerManager.getSeller(sellerId)
@@ -42,11 +39,19 @@ public class ProjectController {
 
         return newProject;
     }
+    @GET
+    @Path("/{projectId}")
+    public Project getProject(@PathParam("projectId") Long projectId) {
+        return projectManager.getProject(projectId);
+    }
 
+    // Buyer:
     @Path("/{projectId}/bids")
     public BidController getBidResource(@PathParam("buyerId") Long buyerId) {
         return new BidController(projectManager, buyerManager);
     }
+
+
     // Only checking own project.
     // Since at the moment sellers have privilege to check project
     // bid list.

@@ -1,6 +1,6 @@
 package sellerbuyer.util.database;
 
-import sellerbuyer.bean.Seller;
+import sellerbuyer.model.bean.Seller;
 
 import java.util.HashMap;
 import java.util.Map;

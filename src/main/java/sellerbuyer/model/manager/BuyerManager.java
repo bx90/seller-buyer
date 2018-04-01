@@ -1,6 +1,6 @@
-package sellerbuyer.domain.manager;
+package sellerbuyer.model.manager;
 
-import sellerbuyer.bean.Buyer;
+import sellerbuyer.model.bean.Buyer;
 import sellerbuyer.util.database.BuyerTable;
 
 import java.util.Map;

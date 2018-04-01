@@ -1,10 +1,10 @@
 package sellerbuyer.controller;
 
-import sellerbuyer.bean.Buyer;
-import sellerbuyer.bean.Project;
-import sellerbuyer.domain.manager.BidManager;
-import sellerbuyer.domain.manager.BuyerManager;
-import sellerbuyer.domain.manager.ProjectManager;
+import sellerbuyer.model.bean.Buyer;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.manager.BidManager;
+import sellerbuyer.model.manager.BuyerManager;
+import sellerbuyer.model.manager.ProjectManager;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -34,7 +34,6 @@ public class BuyerController {
     public ProjectController getProjectResource() {
         return new ProjectController(buyerManager);
     }
-
 
     public List<Project> getProjects() {
         return projectManager.getProject();

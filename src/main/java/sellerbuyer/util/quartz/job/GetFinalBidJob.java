@@ -1,11 +1,11 @@
-package sellerbuyer.util.quartz;
+package sellerbuyer.util.quartz.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import sellerbuyer.bean.Bid;
-import sellerbuyer.bean.Project;
-import sellerbuyer.domain.manager.ProjectManager;
+import sellerbuyer.model.bean.Bid;
+import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.manager.ProjectManager;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author Boxiong
  * @date 3/31/18
  **/
-public class GetFinalBid implements Job {
+public class GetFinalBidJob implements Job {
     private static ProjectManager projectManager = new ProjectManager();
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
