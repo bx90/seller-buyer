@@ -4,6 +4,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import sellerbuyer.model.bean.Bid;
+import sellerbuyer.model.bean.Message;
 import sellerbuyer.model.bean.Project;
 import sellerbuyer.model.manager.ProjectManager;
 
@@ -17,25 +18,33 @@ import java.util.List;
  **/
 public class GetFinalBidJob implements Job {
     private static ProjectManager projectManager = new ProjectManager();
+    private static final Long LATENCY_SECOND = 10L;
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         System.out.println("Getting final bid at " + LocalDateTime.now());
-        getLatestBid();
+        getFinalBid();
     }
 
-    // scan all the project.
-    // compare the status and date.
-    //
-
-    public void getLatestBid() {
+    private void getFinalBid() {
         List<Project> projectList = projectManager.getProject();
-        for (Project p : projectList) {
-            if (p.isActive() && ZonedDateTime.now().minusSeconds(10L).isAfter(p.getDueDate())) {
-                System.out.println("final bid for project :" + p.getProjectId() + " is :");
-                Bid b = p.getFinalBid();
-                p.setActive(false);
-                System.out.println(b);
+        for (Project project : projectList) {
+            if (project.isActive() && ZonedDateTime.now().minusSeconds(LATENCY_SECOND).isAfter(project.getDueDate())) {
+                System.out.println("Final bid for project :" + project.getProjectId() + " is :");
+                Bid bid = project.getFinalBid();
+                System.out.println(bid);
+
+                project.setActive(false);
+                project.notifySeller(composeMessage(bid));
             }
         }
+    }
+
+    private Message composeMessage(Bid bid) {
+        Message message = new Message();
+        message.setContent("The final bid price is " + bid.getPrice()
+                + ". The bid id is "
+                + bid.getBidId() + ".");
+
+        return message;
     }
 }

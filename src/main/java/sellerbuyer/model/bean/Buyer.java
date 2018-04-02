@@ -23,7 +23,7 @@ public class Buyer implements Observer {
     }
 
     @Override
-    public void update() {
+    public void update(Message message) {
 
     }
 

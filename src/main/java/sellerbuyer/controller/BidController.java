@@ -29,12 +29,10 @@ public class BidController {
         this.buyerManager = buyerManager;
     }
 
-    // add a bid in the project;
-    // add a project in buyer.project.
     @POST
     public Bid addBid(Bid bid,
-                       @PathParam("buyerId") Long buyerId,
-                       @PathParam("projectId") Long projectId) throws ValidationException {
+                      @PathParam("buyerId") Long buyerId,
+                      @PathParam("projectId") Long projectId) throws ValidationException {
         Project project = projectManager.getProject(projectId);
         if (!project.isActive()) {
             throw new ValidationException("The project with id: " + projectId + " expired. ");

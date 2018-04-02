@@ -20,6 +20,7 @@ public class ProjectCollectionStrategyTest {
     public void setup() {
         project1 = new Project();
         project1.setProjectId(1L);
+
         Bid bid = new Bid();
         bid.setBuyerId(1L);
         bid.setPrice(200.0);
@@ -27,15 +28,17 @@ public class ProjectCollectionStrategyTest {
         bid.setBidDate(ZonedDateTime.now());
         project1.addBid(bid);
     }
+    // Buyer should not see the bid list.
     @Test
     public void testBuyerCollection() {
         projectCollector.setProjectCollectionStrategy(new SellerProjectCollection());
         Project result = projectCollector.collect(project1);
         System.out.println(result.getFinalBid());
         System.out.println(result);
-        Assert.assertNotNull(result.getBids());
+        Assert.assertNull(result.getBids());
     }
 
+    // Seller should not see the bid list.
     @Test
     public void testSellerCollection() {
         projectCollector.setProjectCollectionStrategy(new BuyerProjectCollection());

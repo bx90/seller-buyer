@@ -1,6 +1,7 @@
 package sellerbuyer.model.manager;
 
 import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.bean.Seller;
 import sellerbuyer.util.database.ProjectTable;
 import sellerbuyer.util.exception.ValidationException;
 import sellerbuyer.util.time.TimeTransformer;
@@ -17,8 +18,8 @@ import java.util.Map;
 public class ProjectManager {
     private Map<Long, Project> projects = ProjectTable.getProjectList();
 
-    public Project addProject(Project project, Long sellerId) throws ValidationException {
-        initializeProject(project, sellerId);
+    public Project addProject(Project project, Seller seller) throws ValidationException {
+        initializeProject(project, seller);
         validation(project);
         storeProject(project);
         return project;
@@ -47,8 +48,9 @@ public class ProjectManager {
         // add date format checking, or limit the format in the UI.
     }
 
-    private void initializeProject(Project project, Long sellerId) throws ValidationException {
-        project.setSellerId(sellerId);
+    private void initializeProject(Project project, Seller seller) throws ValidationException {
+        project.setSeller(seller);
+        project.setSellerId(seller.getSellerId());
         project.setProjectId((long) projects.size());
         project.setActive(true);
         project.setCreateDate(ZonedDateTime.now());

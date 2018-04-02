@@ -69,11 +69,12 @@ public class ProjectController {
 
     // Seller:
     @POST
-    public Response addProject(@PathParam("sellerId") Long sellerId, Project project,  @Context UriInfo uriInfo) throws ValidationException {
+    public Response addProject(@PathParam("sellerId") Long sellerId,
+                               Project project,
+                               @Context UriInfo uriInfo) throws ValidationException {
         sellerManager.validate(sellerId);
         Seller seller = sellerManager.getSeller(sellerId);
-        project.setSeller(seller);
-        Project newProject = projectManager.addProject(project, sellerId);
+        Project newProject = projectManager.addProject(project, seller);
         sellerManager.linkProjectWithSeller(sellerId, newProject);
         URI uri = uriInfo.getAbsolutePathBuilder()
                          .path(newProject.getProjectId().toString())
@@ -97,7 +98,8 @@ public class ProjectController {
 
     // Buyer:
     @Path("/{projectId}/bids")
-    public BidController getBidResource(@PathParam("buyerId") Long buyerId, @PathParam("projectId") Long projectId) throws ValidationException {
+    public BidController getBidResource(@PathParam("buyerId") Long buyerId,
+                                        @PathParam("projectId") Long projectId) throws ValidationException {
         projectManager.validateBeforeBid(projectId);
         return new BidController(projectManager, buyerManager);
     }
