@@ -24,7 +24,11 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class BuyerController {
-    private static BuyerManager buyerManager = new BuyerManager();
+    private static BuyerManager buyerManager;
+
+    static {
+        buyerManager = new BuyerManager();
+    }
 
     @GET
     @Path("/{buyerId}")

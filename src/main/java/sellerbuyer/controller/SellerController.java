@@ -20,8 +20,11 @@ import javax.ws.rs.core.UriInfo;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class SellerController {
-    private static SellerManager sellerManager = new SellerManager();
+    private static SellerManager sellerManager;
 
+    static {
+        sellerManager = new SellerManager();
+    }
     @GET
     @Path("/{sellerId}")
     public Seller getSeller(@PathParam("sellerId") Long id, @Context UriInfo uriInfo) throws ValidationException {
