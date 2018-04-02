@@ -25,8 +25,8 @@ public class Seller extends Role implements Observer {
     }
 
     @Override
-    public void update() {
-
+    public void update(Message message) {
+        messageList.add(message);
     }
 
     public Long getSellerId() {

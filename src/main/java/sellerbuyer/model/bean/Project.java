@@ -50,8 +50,8 @@ public class Project implements SellerObservable, BuyerObservable {
     }
 
     @Override
-    public void notifySeller() {
-
+    public void notifySeller(Message message) {
+        seller.update(message);
     }
 
     @Override

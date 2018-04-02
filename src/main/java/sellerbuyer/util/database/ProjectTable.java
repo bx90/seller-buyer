@@ -15,16 +15,5 @@ public class ProjectTable {
     public static Map<Long, Project> getProjectList() {
         return projectList;
     }
-
-
-//    @Override
-//    public Map<Long, Project> getData() {
-//        return projectList;
-//    }
-
-//    @Override
-//    public Map getData() {
-//        return projectList;
-//    }
 }
 
