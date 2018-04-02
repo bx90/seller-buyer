@@ -2,6 +2,7 @@ package sellerbuyer.model.manager;
 
 import sellerbuyer.model.bean.Buyer;
 import sellerbuyer.util.database.BuyerTable;
+import sellerbuyer.util.exception.ValidationException;
 
 import java.util.Map;
 
@@ -13,26 +14,24 @@ public class BuyerManager {
     private Map<Long, Buyer> buyers = BuyerTable.getBuyers();
 
     public BuyerManager() {
-        Long buyerId1 = buyers.size() + 1L;
-        Long buyerId2 = buyers.size() + 1L;
-
+        Long buyerId1 = (long) buyers.size();
         Buyer buyer1 = new Buyer();
-        Buyer buyer2 = new Buyer();
-
         buyer1.setBuyerId(buyerId1);
-        buyer2.setBuyerId(buyerId2);
-
         buyers.put(buyer1.getBuyerId(), buyer1);
-        buyers.put(buyer2.getBuyerId(), buyer2);
-    }
 
-    public Buyer addBuyer(Buyer buyer) {
-        buyer.setBuyerId((long) buyers.size() + 1);
-        buyers.put(buyer.getBuyerId(), buyer);
-        return buyer;
+        Long buyerId2 = (long) buyers.size();
+        Buyer buyer2 = new Buyer();
+        buyer2.setBuyerId(buyerId2);
+        buyers.put(buyer2.getBuyerId(), buyer2);
     }
 
     public Buyer getBuyer(Long id) {
         return buyers.get(id);
+    }
+
+    public void validate(Long buyerId) throws ValidationException {
+        if (buyers.get(buyerId) == null) {
+            throw new ValidationException("Buyer with id: " + Long.toString(buyerId) + " does not exist.");
+        }
     }
 }

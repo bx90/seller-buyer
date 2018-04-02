@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Run All">
+    <test name="Run by pacakge">
+        <packages>
+            <package name="sellerbuyer.controller" />
+            <package name="sellerbuyer.model.bean" />
+            <package name="sellerbuyer.model.manager" />
+            <package name="sellerbuyer.model.datacollection.project" />
+        </packages>
+    </test>
+</suite>

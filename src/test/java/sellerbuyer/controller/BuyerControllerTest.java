@@ -12,13 +12,18 @@ import java.util.List;
  * @author Boxiong
  * @date 3/28/18
  **/
-public class BuyerServiceTest {
+public class BuyerControllerTest {
     private Project project1;
     @BeforeTest
     public void setup() {
         project1 = new Project();
         project1.setDescription("Test");
         project1.setBudge(100.0);
+    }
+
+    @Test
+    public void testGetBuyer() {
+
     }
     @Test
     public void testGetProjects() throws Exception {

@@ -19,5 +19,6 @@ public class BuyerProjectCollection implements ProjectCollectionStrategy {
     private void applyRule(Project project) {
         project.setBids(null);
         project.setFinalBid(null);
+//        project.setFinalBidPrice(null);
     }
 }

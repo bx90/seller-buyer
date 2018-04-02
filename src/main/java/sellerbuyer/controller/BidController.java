@@ -20,7 +20,7 @@ import java.util.Date;
  **/
 @Path("/")
 public class BidController {
-    private BidManager bidManager = new BidManager();
+    private static BidManager bidManager = new BidManager();
     private ProjectManager projectManager;
     private BuyerManager buyerManager;
 

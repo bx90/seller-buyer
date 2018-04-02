@@ -17,6 +17,5 @@ public class ValidationExceptionMapper implements ExceptionMapper<ValidationExce
     public Response toResponse(ValidationException e) {
         ExceptionMessage message = new ExceptionMessage(e.toString());
         return Response.status(Status.NOT_FOUND).entity(message).build();
-//        return Response.status(Status.NOT_FOUND).entity(e.toString()).build();
     }
 }

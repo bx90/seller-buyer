@@ -8,6 +8,7 @@ import sellerbuyer.model.bean.Project;
 import sellerbuyer.model.manager.ProjectManager;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class GetFinalBidJob implements Job {
     public void getLatestBid() {
         List<Project> projectList = projectManager.getProject();
         for (Project p : projectList) {
-            if (p.isActive()) {
+            if (p.isActive() && ZonedDateTime.now().minusSeconds(10L).isAfter(p.getDueDate())) {
                 System.out.println("final bid for project :" + p.getProjectId() + " is :");
                 Bid b = p.getFinalBid();
                 p.setActive(false);

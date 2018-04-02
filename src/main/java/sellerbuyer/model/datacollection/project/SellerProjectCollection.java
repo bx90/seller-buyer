@@ -1,6 +1,7 @@
 package sellerbuyer.model.datacollection.project;
 
 import sellerbuyer.model.bean.Project;
+import sellerbuyer.util.io.Util;
 
 /**
  * @author Boxiong
@@ -9,6 +10,13 @@ import sellerbuyer.model.bean.Project;
 public class SellerProjectCollection implements ProjectCollectionStrategy {
     @Override
     public Project collect(Project inputProject) {
-        return inputProject;
+        Project clone = Util.cloneProject(inputProject);
+        applyRule(clone);
+        return clone;
+    }
+
+    private void applyRule(Project project) {
+        project.setBids(null);
+//        project.setFinalBid(null);
     }
 }
