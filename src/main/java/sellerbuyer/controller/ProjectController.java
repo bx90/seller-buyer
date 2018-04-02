@@ -1,6 +1,7 @@
 package sellerbuyer.controller;
 
 import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.bean.Seller;
 import sellerbuyer.model.datacollection.project.ProjectCollectionStrategy;
 import sellerbuyer.model.datacollection.project.ProjectCollector;
 import sellerbuyer.model.manager.BuyerManager;
@@ -70,6 +71,8 @@ public class ProjectController {
     @POST
     public Response addProject(@PathParam("sellerId") Long sellerId, Project project,  @Context UriInfo uriInfo) throws ValidationException {
         sellerManager.validate(sellerId);
+        Seller seller = sellerManager.getSeller(sellerId);
+        project.setSeller(seller);
         Project newProject = projectManager.addProject(project, sellerId);
         sellerManager.linkProjectWithSeller(sellerId, newProject);
         URI uri = uriInfo.getAbsolutePathBuilder()

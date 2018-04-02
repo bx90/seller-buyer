@@ -23,7 +23,6 @@ public class SellerManager {
         Long id2 = (long) sellers.size();
         Seller seller2 = new Seller();
         seller2.setSellerId(id2);
-
         sellers.put(seller2.getSellerId(), seller2);
     }
 

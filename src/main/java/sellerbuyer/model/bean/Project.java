@@ -5,7 +5,7 @@ import sellerbuyer.model.Observer;
 import sellerbuyer.model.SellerObservable;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
+import javax.xml.bind.annotation.XmlTransient;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -14,7 +14,7 @@ import java.util.*;
  * @date 3/27/18
  **/
 @XmlRootElement
-public class Project implements SellerObservable, BuyerObservable, Serializable {
+public class Project implements SellerObservable, BuyerObservable {
     private Long projectId;
     private String description;
     private String userInputDueDate;
@@ -27,6 +27,8 @@ public class Project implements SellerObservable, BuyerObservable, Serializable 
     private PriorityQueue<Bid> bidPriorityQueue;
     private Bid finalBid;
     private Double finalBidPrice;
+    @XmlTransient
+    private Seller seller;
 
     public Project() {
         bids = new HashMap<>();
@@ -176,5 +178,14 @@ public class Project implements SellerObservable, BuyerObservable, Serializable 
         sb.append(", finalBidPrice=").append(finalBidPrice);
         sb.append('}');
         return sb.toString();
+    }
+    @XmlTransient
+    public Seller getSeller() {
+        return seller;
+    }
+
+    @XmlTransient
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 }
