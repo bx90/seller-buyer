@@ -20,7 +20,12 @@ import java.util.Date;
  **/
 @Path("/")
 public class BidController {
-    private static BidManager bidManager = new BidManager();
+    private static BidManager bidManager;
+
+    static {
+        bidManager = new BidManager();
+    }
+
     private ProjectManager projectManager;
     private BuyerManager buyerManager;
 
@@ -34,9 +39,6 @@ public class BidController {
                       @PathParam("buyerId") Long buyerId,
                       @PathParam("projectId") Long projectId) throws ValidationException {
         Project project = projectManager.getProject(projectId);
-        if (!project.isActive()) {
-            throw new ValidationException("The project with id: " + projectId + " expired. ");
-        }
 
         bid.setProjectId(projectId);
         bid.setBuyerId(buyerId);
