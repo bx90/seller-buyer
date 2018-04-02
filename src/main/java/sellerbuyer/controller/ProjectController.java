@@ -94,7 +94,8 @@ public class ProjectController {
 
     // Buyer:
     @Path("/{projectId}/bids")
-    public BidController getBidResource(@PathParam("buyerId") Long buyerId) {
+    public BidController getBidResource(@PathParam("buyerId") Long buyerId, @PathParam("projectId") Long projectId) throws ValidationException {
+        projectManager.validateBeforeBid(projectId);
         return new BidController(projectManager, buyerManager);
     }
 }

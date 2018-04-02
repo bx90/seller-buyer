@@ -151,7 +151,12 @@ public class Project implements SellerObservable, BuyerObservable, Serializable 
     public void setFinalBidPrice(Double finalBidPrice) {
         this.finalBidPrice = finalBidPrice;
     }
-// Testing only
+
+    public void setBidPriorityQueue(PriorityQueue<Bid> bidPriorityQueue) {
+        this.bidPriorityQueue = bidPriorityQueue;
+    }
+
+    // Testing only
     //TODO: remove this before release
 
     @Override

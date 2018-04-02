@@ -49,7 +49,7 @@ public class ProjectManager {
 
     private void initializeProject(Project project, Long sellerId) throws ValidationException {
         project.setSellerId(sellerId);
-        project.setProjectId((long) projects.size() + 1);
+        project.setProjectId((long) projects.size());
         project.setActive(true);
         project.setCreateDate(ZonedDateTime.now());
         project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
@@ -58,5 +58,15 @@ public class ProjectManager {
 
     private void storeProject(Project project) {
         projects.put(project.getProjectId(), project);
+    }
+
+    public void validateBeforeBid(Long id) throws ValidationException {
+        if (projects.get(id) == null) {
+            throw new ValidationException("Project with id: " + Long.toString(id) + " does not exist.");
+        }
+
+        if (!projects.get(id).isActive()) {
+            throw new ValidationException("Project " + Long.toString(id) + " is not valid any more.");
+        }
     }
 }
