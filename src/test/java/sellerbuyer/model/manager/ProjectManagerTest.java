@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import sellerbuyer.model.bean.Project;
+import sellerbuyer.model.bean.Seller;
 import sellerbuyer.util.exception.ValidationException;
 import sellerbuyer.util.time.TimeTransformer;
 
@@ -16,16 +17,20 @@ import java.util.HashMap;
  **/
 public class ProjectManagerTest {
     ProjectManager projectManager;
+    SellerManager sellerManager;
+    Seller seller;
 
     @BeforeTest
     public void setup() {
         projectManager = new ProjectManager();
+        sellerManager = new SellerManager();
+        seller = sellerManager.getSeller(1L);
     }
 
     @Test
     public void addProjectTest() throws ValidationException {
         Project project = mockUp();
-        projectManager.addProject(project, 1L);
+        projectManager.addProject(project, seller);
     }
 
     @Test
@@ -33,7 +38,7 @@ public class ProjectManagerTest {
         try {
             Project project = mockUp();
             project.setDescription("");
-            projectManager.addProject(project, 1L);
+            projectManager.addProject(project, seller);
         } catch (ValidationException e) {
             System.out.println(e.getMessage());
             Assert.assertTrue(e.getMessage().contains("Description is a mandatory field"));
@@ -45,7 +50,7 @@ public class ProjectManagerTest {
         try {
             Project project = mockUp();
             project.setDueDate(null);
-            projectManager.addProject(project, 1L);
+            projectManager.addProject(project, seller);
         } catch (ValidationException e) {
             System.out.println(e.getMessage());
             Assert.assertTrue(e.getMessage().contains("Due date is a mandatory field"));
@@ -57,7 +62,7 @@ public class ProjectManagerTest {
         try {
             Project project = mockUp();
             project.setDueDate(TimeTransformer.getZonedDateTime("2002-07-05T22:00"));
-            projectManager.addProject(project, 1L);
+            projectManager.addProject(project, seller);
         } catch (ValidationException e) {
             System.out.println(e.getMessage());
             Assert.assertTrue(e.getMessage().contains("It needs to be after the project created time"));
