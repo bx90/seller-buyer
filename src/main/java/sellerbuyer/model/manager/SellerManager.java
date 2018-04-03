@@ -16,9 +16,11 @@ public class SellerManager {
     public SellerManager() {
         Seller seller1 = new Seller();
         Seller seller2 = new Seller();
+        Seller seller3 = new Seller();
 
         sellerDao.add(seller1);
         sellerDao.add(seller2);
+        sellerDao.add(seller3);
     }
 
     public Seller getSeller(Long id) {
