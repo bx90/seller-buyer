@@ -86,20 +86,21 @@ public class ProjectController {
         Project newProject = projectManager.addProject(project, seller);
         sellerManager.linkProjectWithSeller(sellerId, newProject);
         URI uri = uriInfo.getAbsolutePathBuilder()
-                         .path(newProject.getProjectId().toString())
-                         .build();
+                .path(newProject.getProjectId().toString())
+                .build();
 
         return Response.created(uri)
-                       .entity(newProject)
-                       .build();
+                .entity(newProject)
+                .build();
     }
     @GET
     @Path("/{projectId}")
     public Project getProject(@PathParam("projectId") Long projectId) throws ValidationException {
+        projectManager.validateExsistanceAndStatus(projectId);
         Project returnProject = projectManager.getProject(projectId);
-        if (returnProject == null) {
-            throw new ValidationException("Cannot find project with id " + projectId);
-        }
+//        if (returnProject == null) {
+//            throw new ValidationException("Cannot find project with id " + projectId);
+//        }
         projectCollector.setProjectCollectionStrategy(strategy);
         return projectCollector.collect(returnProject);
 
@@ -109,7 +110,7 @@ public class ProjectController {
     @Path("/{projectId}/bids")
     public BidController getBidResource(@PathParam("buyerId") Long buyerId,
                                         @PathParam("projectId") Long projectId) throws ValidationException {
-        projectManager.validateBeforeBid(projectId);
+        projectManager.validateExsistanceAndStatus(projectId);
         return new BidController(projectManager, buyerManager);
     }
 }

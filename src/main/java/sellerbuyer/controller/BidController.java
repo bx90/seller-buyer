@@ -39,18 +39,15 @@ public class BidController {
                       @PathParam("buyerId") Long buyerId,
                       @PathParam("projectId") Long projectId) throws ValidationException {
         Project project = projectManager.getProject(projectId);
-
+        bidManager.validate(project, bid);
         bid.setProjectId(projectId);
         bid.setBuyerId(buyerId);
-        bid.setBidDate(ZonedDateTime.now());
+        bidManager.addBid(bid);
 
         Buyer buyer = buyerManager.getBuyer(buyerId);
-        bidManager.validate(project, bid);
-        bidManager.addBid(bid);
-        // TODO: notify seller.
-
         project.addBid(bid);
         buyer.getBids().add(bid);
+        // TODO: notify seller.
 
         return bid;
     }

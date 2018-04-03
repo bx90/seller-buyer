@@ -1,6 +1,6 @@
 package sellerbuyer.model.bean;
 
-import sellerbuyer.model.Observer;
+import sellerbuyer.model.observer.Observer;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;

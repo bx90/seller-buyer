@@ -1,36 +1,30 @@
 package sellerbuyer.model.manager;
 
 import sellerbuyer.model.bean.Buyer;
-import sellerbuyer.util.database.BuyerTable;
+import sellerbuyer.util.dao.buyer.BuyerDao;
+import sellerbuyer.util.dao.buyer.BuyerInMemoryDao;
 import sellerbuyer.util.exception.ValidationException;
-
-import java.util.Map;
 
 /**
  * @author Boxiong
  * @date 3/29/18
  **/
 public class BuyerManager {
-    private Map<Long, Buyer> buyers = BuyerTable.getBuyers();
+    private BuyerDao buyerDao = new BuyerInMemoryDao();
 
     public BuyerManager() {
-        Long buyerId1 = (long) buyers.size();
         Buyer buyer1 = new Buyer();
-        buyer1.setBuyerId(buyerId1);
-        buyers.put(buyer1.getBuyerId(), buyer1);
-
-        Long buyerId2 = (long) buyers.size();
         Buyer buyer2 = new Buyer();
-        buyer2.setBuyerId(buyerId2);
-        buyers.put(buyer2.getBuyerId(), buyer2);
+        buyerDao.add(buyer1);
+        buyerDao.add(buyer2);
     }
 
     public Buyer getBuyer(Long id) {
-        return buyers.get(id);
+        return buyerDao.getById(id);
     }
 
     public void validate(Long buyerId) throws ValidationException {
-        if (buyers.get(buyerId) == null) {
+        if (buyerDao.getById(buyerId) == null) {
             throw new ValidationException("Buyer with id: " + Long.toString(buyerId) + " does not exist.");
         }
     }

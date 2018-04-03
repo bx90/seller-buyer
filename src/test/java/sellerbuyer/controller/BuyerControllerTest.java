@@ -18,7 +18,7 @@ public class BuyerControllerTest {
     public void setup() {
         project1 = new Project();
         project1.setDescription("Test");
-        project1.setBudge(100.0);
+        project1.setBudget(100.0);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package sellerbuyer.model;
+package sellerbuyer.model.observer;
 
 import sellerbuyer.model.bean.Message;
 

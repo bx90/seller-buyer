@@ -3,16 +3,10 @@ package sellerbuyer.model.manager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import sellerbuyer.controller.ProjectController;
-import sellerbuyer.controller.SellerController;
 import sellerbuyer.model.bean.Project;
 import sellerbuyer.model.bean.Seller;
-import sellerbuyer.model.manager.ModelInitializer;
-import sellerbuyer.model.manager.SellerManager;
-import sellerbuyer.util.database.SellerTable;
 
 import java.time.ZonedDateTime;
-import java.util.Map;
 
 /**
  * @author Boxiong
@@ -51,7 +45,7 @@ public class SellerModelTest {
 
     private void populateProject(Project project) {
         project.setDescription(description);
-        project.setBudge(100.0);
+        project.setBudget(100.0);
         project.setDueDate(ZonedDateTime.now());
     }
 }

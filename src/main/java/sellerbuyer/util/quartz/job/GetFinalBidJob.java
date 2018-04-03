@@ -41,7 +41,7 @@ public class GetFinalBidJob implements Job {
 
     private Message composeMessage(Bid bid) {
         Message message = new Message();
-        message.setContent("The final bid price is " + bid.getPrice()
+        message.setContent("The final bid price for project" + bid.getProjectId() + " is " + bid.getPrice()
                 + ". The bid id is "
                 + bid.getBidId() + ".");
 
