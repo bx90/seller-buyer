@@ -73,7 +73,7 @@ public class ProjectManagerTest {
         Project clone = new Project();
         clone.setBids(new HashMap<>());
         clone.setActive(true);
-        clone.setBudge(100.0);
+        clone.setBudget(100.0);
         clone.setDescription("Unit test.");
         clone.setDueDate(TimeTransformer.getZonedDateTime("2020-07-05T22:00"));
         clone.setCreateDate(ZonedDateTime.now());

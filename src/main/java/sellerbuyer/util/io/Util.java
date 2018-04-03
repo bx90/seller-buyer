@@ -25,7 +25,7 @@ public class Util {
         clone.setProjectId(inputProject.getProjectId());
         clone.setDueDate(inputProject.getDueDate());
         clone.setActive(inputProject.isActive());
-        clone.setBudge(inputProject.getBudge());
+        clone.setBudget(inputProject.getBudget());
         clone.setDescription(inputProject.getDescription());
         clone.setCreateDate(inputProject.getCreateDate());
         clone.setSellerId(inputProject.getSellerId());

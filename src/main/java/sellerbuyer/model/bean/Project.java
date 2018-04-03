@@ -1,8 +1,8 @@
 package sellerbuyer.model.bean;
 
-import sellerbuyer.model.BuyerObservable;
-import sellerbuyer.model.Observer;
-import sellerbuyer.model.SellerObservable;
+import sellerbuyer.model.observer.BuyerObservable;
+import sellerbuyer.model.observer.Observer;
+import sellerbuyer.model.observer.SellerObservable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -20,7 +20,7 @@ public class Project implements SellerObservable, BuyerObservable {
     private String userInputDueDate;
     private Long sellerId;
     private Boolean isActive;
-    private Double budge;
+    private Double budget;
     private ZonedDateTime dueDate;
     private ZonedDateTime createDate;
     private Map<Long, Bid> bids;
@@ -93,12 +93,12 @@ public class Project implements SellerObservable, BuyerObservable {
         this.sellerId = sellerId;
     }
 
-    public Double getBudge() {
-        return budge;
+    public Double getBudget() {
+        return budget;
     }
 
-    public void setBudge(Double budge) {
-        this.budge = budge;
+    public void setBudget(Double budget) {
+        this.budget = budget;
     }
 
     public Map<Long, Bid> getBids() {
@@ -169,7 +169,7 @@ public class Project implements SellerObservable, BuyerObservable {
         sb.append(", userInputDueDate='").append(userInputDueDate).append('\'');
         sb.append(", sellerId=").append(sellerId);
         sb.append(", isActive=").append(isActive);
-        sb.append(", budge=").append(budge);
+        sb.append(", budge=").append(budget);
         sb.append(", dueDate=").append(dueDate);
         sb.append(", createDate=").append(createDate);
         sb.append(", bids=").append(bids);
