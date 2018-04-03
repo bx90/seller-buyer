@@ -25,6 +25,9 @@ public class BidManager {
             throw new ValidationException("You have bid the project for "
                     + project.getBids().get(bid.getBuyerId()));
         }
+        if (project != null && (project.getDueDate().isBefore(ZonedDateTime.now()))) {
+            throw new ValidationException("The project " + project.getProjectId() + " is expired.");
+        }
 
         if (bid.getPrice() == null) {
             throw new ValidationException("Bid price is a mandatory field. Please provide a valid number.");
