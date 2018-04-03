@@ -16,13 +16,17 @@ public class BidManager {
     private static Map<Long, Bid> bids = BidTable.getBids();
 
     public void addBid(Bid bid) {
-        bid.setBidId(bids.size() + 1L);
+        bid.setBidId((long) bids.size());
         bid.setBidDate(ZonedDateTime.now());
         bids.put(bid.getBidId(), bid);
     }
 
     public void validate(Project project, Bid bid) throws ValidationException {
-        if (project != null && project.getBids().containsKey(bid.getBuyerId())) {
+        if (project.getDueDate().isBefore(ZonedDateTime.now())) {
+            throw new ValidationException("The project " + project.getProjectId() + " is expired.");
+        }
+
+        if (project.getBids().containsKey(bid.getBuyerId())) {
             throw new ValidationException("You have bid the project for "
                     + project.getBids().get(bid.getBuyerId()));
         }

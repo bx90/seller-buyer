@@ -45,8 +45,8 @@ public class BidController {
         bid.setBidDate(ZonedDateTime.now());
 
         Buyer buyer = buyerManager.getBuyer(buyerId);
-        bidManager.addBid(bid);
         bidManager.validate(project, bid);
+        bidManager.addBid(bid);
         // TODO: notify seller.
 
         project.addBid(bid);
