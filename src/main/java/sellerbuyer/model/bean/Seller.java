@@ -11,7 +11,7 @@ import java.util.List;
  * @date 3/27/18
  **/
 @XmlRootElement
-public class Seller extends Role implements Observer {
+public class Seller implements Observer {
 
     private Long sellerId;
     private List<Project> projectList;

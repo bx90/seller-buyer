@@ -15,8 +15,11 @@ public class BuyerManager {
     public BuyerManager() {
         Buyer buyer1 = new Buyer();
         Buyer buyer2 = new Buyer();
+        Buyer buyer3 = new Buyer();
+
         buyerDao.add(buyer1);
         buyerDao.add(buyer2);
+        buyerDao.add(buyer3);
     }
 
     public Buyer getBuyer(Long id) {
