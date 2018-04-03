@@ -13,13 +13,10 @@ import java.time.ZonedDateTime;
  * @date 3/29/18
  **/
 public class BidManager {
-    //    private static Map<Long, Bid> bids = BidTable.getBids();
     private BidDao bidDao = new BidInMemoryDao();
 
     public void addBid(Bid bid) {
-//        bid.setBidId(bids.size() + 1L);
         bid.setBidDate(ZonedDateTime.now());
-//        bids.put(bid.getBidId(), bid);
         bidDao.add(bid);
     }
 

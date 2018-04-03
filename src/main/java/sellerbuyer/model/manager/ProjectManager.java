@@ -15,7 +15,6 @@ import java.util.List;
  * @date 3/28/18
  **/
 public class ProjectManager {
-    //    private Map<Long, Project> projects = ProjectTable.getProjectList();
     private ProjectDao projectDao = new ProjectInMemoryDao();
 
     public Project addProject(Project project, Seller seller) throws ValidationException {
@@ -24,17 +23,11 @@ public class ProjectManager {
         storeProject(project);
         return project;
     }
-    //    public List<Project> getProject() {
-//        return new ArrayList<>(projects.values());
-//    }
     public List<Project> getProject() {
         return projectDao.getAll();
     }
 
 
-    //    public Project getProject(Long projectId) {
-//        return projects.get(projectId);
-//    }
     public Project getProject(Long projectId) {
         return projectDao.getById(projectId);
     }
@@ -61,29 +54,15 @@ public class ProjectManager {
     private void initializeProject(Project project, Seller seller) throws ValidationException {
         project.setSeller(seller);
         project.setSellerId(seller.getSellerId());
-//        project.setProjectId((long) projects.size());
         project.setActive(true);
         project.setCreateDate(ZonedDateTime.now());
         project.setDueDate(TimeTransformer.getZonedDateTime(project.getUserInputDueDate()));
     }
 
-
-    //    private void storeProject(Project project) {
-//        projects.put(project.getProjectId(), project);
-//    }
     private void storeProject(Project project) {
         projectDao.add(project);
     }
 
-    //    public void validateExsistanceAndStatus(Long id) throws ValidationException {
-//        if (projects.get(id) == null) {
-//            throw new ValidationException("Project with id: " + Long.toString(id) + " does not exist.");
-//        }
-//
-//        if (!projects.get(id).isActive()) {
-//            throw new ValidationException("Project " + Long.toString(id) + " is not valid any more.");
-//        }
-//    }
     public void validateExsistanceAndStatus(Long id) throws ValidationException {
         if (projectDao.getById(id) == null) {
             throw new ValidationException("Project with id: " + Long.toString(id) + " does not exist.");

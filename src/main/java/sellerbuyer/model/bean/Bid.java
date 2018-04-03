@@ -14,7 +14,6 @@ public class Bid {
     private Long projectId;
     private Double price;
     private ZonedDateTime bidDate;
-//    private Buyer buyer;
 
     public Long getBidId() {
         return bidId;
@@ -56,14 +55,6 @@ public class Bid {
         this.bidDate = bidData;
     }
 
-//    public Buyer getBuyer() {
-//        return buyer;
-//    }
-//
-//    public void setBuyer(Buyer buyer) {
-//        this.buyer = buyer;
-//    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Bid{");
@@ -72,7 +63,6 @@ public class Bid {
         sb.append(", projectId='").append(projectId).append('\'');
         sb.append(", price=").append(price);
         sb.append(", bidDate=").append(bidDate);
-//        sb.append(", buyer=").append(buyer);
         sb.append('}');
         return sb.toString();
     }

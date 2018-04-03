@@ -98,9 +98,6 @@ public class ProjectController {
     public Project getProject(@PathParam("projectId") Long projectId) throws ValidationException {
         projectManager.validateExsistanceAndStatus(projectId);
         Project returnProject = projectManager.getProject(projectId);
-//        if (returnProject == null) {
-//            throw new ValidationException("Cannot find project with id " + projectId);
-//        }
         projectCollector.setProjectCollectionStrategy(strategy);
         return projectCollector.collect(returnProject);
 
