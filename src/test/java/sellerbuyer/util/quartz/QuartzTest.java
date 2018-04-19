@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import sellerbuyer.util.quartz.job.TestJob;
 
 /**
- * @author Boxiong
+ * @author Boxiong Boxiong
  * @date 3/31/18
  **/
 public class QuartzTest {
