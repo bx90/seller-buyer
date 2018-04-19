@@ -32,6 +32,10 @@ public class SellerManager {
     }
 
     public void validate(Long id) throws ValidationException {
+        if (id < 0) {
+            throw new ValidationException("Seller id is negative: " + Long.toString(id) + ".", "400");
+        }
+
         if (sellerDao.getById(id) == null) {
             throw new ValidationException("Cannot find seller with id: " + Long.toString(id) + ".");
         }

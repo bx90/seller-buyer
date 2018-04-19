@@ -16,6 +16,12 @@ public class ValidationExceptionMapper implements ExceptionMapper<ValidationExce
     @Override
     public Response toResponse(ValidationException e) {
         ExceptionMessage message = new ExceptionMessage(e.toString());
+//        if (e.getErrorCode() == null) {
+//            return Response.status(Status.NOT_FOUND).entity(message).build();
+//        }
+        if ("400".equalsIgnoreCase(e.getErrorCode())) {
+            return Response.status(Status.BAD_REQUEST).entity(message).build();
+        }
         return Response.status(Status.NOT_FOUND).entity(message).build();
     }
 }
